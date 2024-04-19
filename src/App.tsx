@@ -13,6 +13,7 @@ import Write from "./routes/Write";
 import LandingPage from "routes/LandingPage";
 import Apollo from "routes/Apollo";
 import QuillWritePage from "routes/QuillWritePage";
+import LandingOrder from "routes/baja_LandingOrder";
 
 const theme = createTheme({
   palette: {
@@ -25,7 +26,8 @@ const theme = createTheme({
       default: "#ffffff",
     },
     text: {
-      primary: "#fff",
+      // primary: "#fff",
+      primary: "#000000",
     },
   },
 });
@@ -36,13 +38,14 @@ const App = () => {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <BrowserRouter>
-          <AppBar />
+          {/* <AppBar /> */}
           {/* 이렇게 해야 앱바 전체 적용 된다*/}
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="signin" element={<SignIn />} />
+            {/* <Route path="signin" element={<SignIn />} /> */}
             <Route path="landing" element={<LandingPage />} />
-            <Route path="apollo" element={<Apollo />} />
+            <Route path="order" element={<LandingOrder />} />
+            {/* <Route path="apollo" element={<Apollo />} /> */}
             <Route path="write" element={<Write />} />
             <Route path="question/:id" element={<Detail />} />
             <Route path="quillWrite" element={<QuillWritePage />} />

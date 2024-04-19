@@ -29,8 +29,8 @@ function Home() {
               minHeight: "150vh",
             }}
           >
-            {/* <QuestionHeader questions={blogPosts} /> */}
-            {/* <Questions questions={blogPosts} /> */}
+            <QuestionHeader questions={blogPosts} />
+            <Questions questions={blogPosts} />
           </Box>
         </Container>
       {/* )} */}
