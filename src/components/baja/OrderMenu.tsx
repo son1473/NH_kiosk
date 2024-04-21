@@ -1,27 +1,18 @@
 import { Box, Button, TextField, Typography } from "@mui/material";
-import { useState, useEffect } from "react";
-import { MENU, menuKey } from "utils/menu";
+import { MENU } from "utils/menu";
 
 interface OrderMenuProps {
-  // menu: string;
   menuName: string;
-  totalPrice: number;
-  setTotalPrice: (value: number) => void;
+  beverageNum: number;
+
+  setBeverageNum: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const OrderMenu = ({ menuName, setTotalPrice }: OrderMenuProps) => {
-  const [beverageNum, setBeverageNum] = useState(0);
-  // const [totalPrice, setTotalPrice] = useState(0);
-
-  // const handleChangeCoffee = () => {
-  //   setCoffeeNum(coffeeNum + 1);
-  // };
-
-  useEffect(() => {
-    setTotalPrice(beverageNum * 2000);
-  }, [beverageNum]);
-  // style, className, onClick, onMouseMove 등의 props를 사용할 수 있도록
-  // ...rest 를 사용하여 ResponsiveBlock에게 전달
+const OrderMenu = ({
+  menuName,
+  beverageNum,
+  setBeverageNum,
+}: OrderMenuProps) => {
   return (
     <Box>
       <Button
@@ -42,8 +33,7 @@ const OrderMenu = ({ menuName, setTotalPrice }: OrderMenuProps) => {
         }}
       >
         {menuName} <br />
-        {/* 2,000원 */}
-        {MENU[menuName]}원
+        {MENU[menuName].toLocaleString()}원
       </Button>
       <Box
         sx={{
@@ -167,7 +157,7 @@ const OrderMenu = ({ menuName, setTotalPrice }: OrderMenuProps) => {
           ></Button>
         </Box>
         <Typography sx={{ fontWeight: "bold", fontSize: "25px" }}>
-          {beverageNum * 2000}
+          {(beverageNum * MENU[menuName]).toLocaleString()}
         </Typography>
       </Box>
     </Box>
