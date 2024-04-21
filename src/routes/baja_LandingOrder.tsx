@@ -4,7 +4,15 @@ import { MENU, menuKey } from "utils/menu";
 import OrderMenu from "./../components/baja/OrderMenu";
 
 function LandingOrder() {
+  const [coffeeIceNum, setCoffeeIceNum] = useState(0);
+  const [coffeeHotNum, setCoffeeHotNum] = useState(0);
+  const [mixCoffeeNum, setMixCoffeeNum] = useState(0);
+  const [iceTeaNum, setIceTeaNum] = useState(0);
+  const [iceChocoNum, setIceChocoNum] = useState(0);
   const [coffeeNum, setCoffeeNum] = useState(0);
+  const [miSutGaruNum, setMiSutGaruNum] = useState(0);
+  const [pepermintNum, setPepermintNum] = useState(0);
+  const [ruibosNum, setRuibosNum] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
 
   // const handleChangeCoffee = () => {

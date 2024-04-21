@@ -6,7 +6,7 @@ import {
 } from "@mui/material/styles";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AppBar from "./components/header/AppBar";
-import Detail from "./routes/Detail";
+// import Detail from "./routes/Detail";
 import Home from "./routes/Home";
 import SignIn from "./routes/SignIn";
 import Write from "./routes/Write";
@@ -41,14 +41,14 @@ const App = () => {
           {/* <AppBar /> */}
           {/* 이렇게 해야 앱바 전체 적용 된다*/}
           <Routes>
-            <Route path="/" element={<Home />} />
+            {/* <Route path="/" element={<Home />} /> */}
             {/* <Route path="signin" element={<SignIn />} /> */}
-            <Route path="landing" element={<LandingPage />} />
-            <Route path="order" element={<LandingOrder />} />
+            {/* <Route path="landing" element={<LandingPage />} /> */}
+            <Route path="/" element={<LandingOrder />} />
             {/* <Route path="apollo" element={<Apollo />} /> */}
-            <Route path="write" element={<Write />} />
-            <Route path="question/:id" element={<Detail />} />
-            <Route path="quillWrite" element={<QuillWritePage />} />
+            {/* <Route path="write" element={<Write />} /> */}
+            {/* <Route path="question/:id" element={<Detail />} /> */}
+            {/* <Route path="quillWrite" element={<QuillWritePage />} /> */}
           </Routes>
         </BrowserRouter>
       </ThemeProvider>

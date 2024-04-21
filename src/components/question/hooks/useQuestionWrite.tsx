@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import contractService from "services/contract.service";
+// import contractService from "services/contract.service";
 import blogPostService from "services/blogPost.service";
 import { RootState } from "stores";
 import { v4 as uuidv4 } from "uuid";
