@@ -102,7 +102,7 @@ function LandingOrder() {
           alignItems="center"
           sx={{ marginTop: "10px", width: "100%" }}
         >
-          <Grid item xs={12} md={4}>
+          <Grid item xs={4} md={4}>
             <Typography
               sx={{
                 display: "inline",
@@ -124,10 +124,11 @@ function LandingOrder() {
               </Typography>
             </Typography>
           </Grid>
-          <Grid item xs={12} md={4} container justifyContent="center">
+          <Grid item xs={4} md={4} container justifyContent="center">
             <Typography
               sx={{
-                font: "30px solid sans-serif ",
+                fontSize: "40px",
+                fontFamily: "cursive",
                 fontWeight: "bold",
                 textAlign: "center",
               }}
@@ -135,7 +136,7 @@ function LandingOrder() {
               NH Cafe
             </Typography>
           </Grid>
-          <Grid item xs={12} md={4}>
+          <Grid item xs={4} md={4}>
             {/* 오른쪽에는 빈 공간 */}
           </Grid>
         </Grid>
@@ -149,7 +150,9 @@ function LandingOrder() {
           <Tab label="탭 1" />
           <Tab label="탭 2" />
         </Tabs>
-        <Box sx={{ height: "580px" }}>
+        <Box
+          // sx={{ height: "580px" }}
+        >
           <TabPanel value={value} index={0}>
             <Grid container spacing={1}>
               <Grid
