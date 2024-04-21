@@ -13,8 +13,10 @@ const OrderMenu = ({
   beverageNum,
   setBeverageNum,
 }: OrderMenuProps) => {
+  const buttonColor = beverageNum > 0 ? "red" : "black";
+
   return (
-    <Box>
+    <Box sx={{ width: "336px" }}>
       <Button
         onClick={() => {
           setBeverageNum(beverageNum + 1);
@@ -29,7 +31,7 @@ const OrderMenu = ({
           textAlign: "center",
           font: "25px Inter, sans-serif ",
           fontWeight: "bold",
-          marginBottom: "10px",
+          marginBottom: "5px",
         }}
       >
         {menuName} <br />
@@ -39,12 +41,16 @@ const OrderMenu = ({
         sx={{
           display: "flex",
           flexDirection: "row",
-          justifyContent: "space-around",
+          justifyContent: "space-between",
+          alignItems: "center",
+          margin: "0px",
+          padding: "0px",
         }}
       >
         <Box
           sx={{
-            verticalAlign: "middle",
+            display: "flex",
+            alignItems: "center",
           }}
         >
           <Button
@@ -61,21 +67,21 @@ const OrderMenu = ({
             }}
             startIcon={
               <svg
-                width="31"
-                height="31"
-                viewBox="0 0 31 31"
+                width="45"
+                height="45"
+                viewBox="0 0 45 45"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <g clip-path="url(#clip0_22_513)">
                   <path
-                    d="M15.44 0C23.9742 0 30.88 6.90578 30.88 15.44C30.88 23.9742 23.9742 30.88 15.44 30.88C6.90578 30.88 0 23.9742 0 15.44C0 6.90578 6.90578 0 15.44 0ZM15.44 28.9802C22.8886 28.9802 28.95 22.8886 28.95 15.44C28.95 7.99141 22.8886 1.93 15.44 1.93C7.99141 1.93 1.93 7.99141 1.93 15.44C1.93 22.8886 7.99141 28.9802 15.44 28.9802ZM14.3845 16.405H8.685C8.14219 16.405 7.72 15.9828 7.72 15.44C7.72 14.8972 8.14219 14.475 8.685 14.475H22.195C22.7378 14.475 23.16 14.8972 23.16 15.44C23.16 15.9828 22.7378 16.405 22.195 16.405H14.3845Z"
+                    d="M22.5 0C34.9365 0 45 10.0635 45 22.5C45 34.9365 34.9365 45 22.5 45C10.0635 45 0 34.9365 0 22.5C0 10.0635 10.0635 0 22.5 0ZM22.5 42.2314C33.3545 42.2314 42.1875 33.3545 42.1875 22.5C42.1875 11.6455 33.3545 2.8125 22.5 2.8125C11.6455 2.8125 2.8125 11.6455 2.8125 22.5C2.8125 33.3545 11.6455 42.2314 22.5 42.2314ZM20.9619 23.9062H12.6562C11.8652 23.9062 11.25 23.291 11.25 22.5C11.25 21.709 11.8652 21.0938 12.6562 21.0938H32.3438C33.1348 21.0938 33.75 21.709 33.75 22.5C33.75 23.291 33.1348 23.9062 32.3438 23.9062H20.9619Z"
                     fill="black"
                   />
                 </g>
                 <defs>
                   <clipPath id="clip0_22_513">
-                    <rect width="30.88" height="30.88" fill="white" />
+                    <rect width="45" height="45" fill="white" />
                   </clipPath>
                 </defs>
               </svg>
@@ -84,15 +90,16 @@ const OrderMenu = ({
 
           <TextField
             variant="outlined"
-            defaultValue={beverageNum}
+            // defaultValue={beverageNum}
             value={beverageNum}
             InputProps={{
               inputProps: {
                 style: {
                   textAlign: "center",
-                  verticalAlign: "middle",
-                  padding: "6px",
+                  // verticalAlign: "middle",
+                  // padding: "6px",
                   fontSize: "1.2rem",
+                  // color: "secondary",
                 },
               },
               style: {
@@ -101,6 +108,7 @@ const OrderMenu = ({
                 width: "50px",
                 height: "50px",
                 // padding: "6px",
+                color: buttonColor,
                 fontWeight: "bold",
                 textAlign: "center",
               },
@@ -109,6 +117,7 @@ const OrderMenu = ({
               textAlign: "center",
               width: "auto",
             }}
+            color="secondary"
             onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
               const newValue = parseInt(event.target.value);
               if (isNaN(newValue)) {
@@ -130,23 +139,23 @@ const OrderMenu = ({
             }}
             startIcon={
               <svg
-                width="32"
-                height="31"
-                viewBox="0 0 32 31"
+                width="46"
+                height="46"
+                viewBox="0 0 46 46"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <g clip-path="url(#clip0_16_43)">
                   <path
-                    d="M16.375 0.0625C7.84916 0.0625 0.9375 6.97416 0.9375 15.5C0.9375 24.0263 7.84916 30.9375 16.375 30.9375C24.9013 30.9375 31.8125 24.0263 31.8125 15.5C31.8125 6.97416 24.9013 0.0625 16.375 0.0625ZM16.375 29.0382C8.92689 29.0382 2.86719 22.9481 2.86719 15.4999C2.86719 8.05183 8.92689 1.99213 16.375 1.99213C23.8231 1.99213 29.8828 8.05186 29.8828 15.4999C29.8828 22.948 23.8231 29.0382 16.375 29.0382ZM23.1289 14.5352H17.3398V8.74609C17.3398 8.2135 16.9076 7.78125 16.375 7.78125C15.8424 7.78125 15.4102 8.2135 15.4102 8.74609V14.5352H9.62109C9.0885 14.5352 8.65625 14.9674 8.65625 15.5C8.65625 16.0326 9.0885 16.4648 9.62109 16.4648H15.4102V22.2539C15.4102 22.7865 15.8424 23.2188 16.375 23.2188C16.9076 23.2188 17.3398 22.7865 17.3398 22.2539V16.4648H23.1289C23.6615 16.4648 24.0938 16.0326 24.0938 15.5C24.0938 14.9674 23.6615 14.5352 23.1289 14.5352Z"
+                    d="M23.4375 0.0625C11.0112 0.0625 0.9375 10.1362 0.9375 22.5625C0.9375 34.9895 11.0112 45.0625 23.4375 45.0625C35.8645 45.0625 45.9375 34.9895 45.9375 22.5625C45.9375 10.1362 35.8645 0.0625 23.4375 0.0625ZM23.4375 42.2943C12.582 42.2943 3.75 33.418 3.75 22.5624C3.75 11.7069 12.582 2.87491 23.4375 2.87491C34.293 2.87491 43.125 11.7069 43.125 22.5624C43.125 33.4179 34.293 42.2943 23.4375 42.2943ZM33.2812 21.1562H24.8438V12.7188C24.8438 11.9425 24.2137 11.3125 23.4375 11.3125C22.6613 11.3125 22.0312 11.9425 22.0312 12.7188V21.1562H13.5938C12.8175 21.1562 12.1875 21.7863 12.1875 22.5625C12.1875 23.3387 12.8175 23.9688 13.5938 23.9688H22.0312V32.4062C22.0312 33.1825 22.6613 33.8125 23.4375 33.8125C24.2137 33.8125 24.8438 33.1825 24.8438 32.4062V23.9688H33.2812C34.0575 23.9688 34.6875 23.3387 34.6875 22.5625C34.6875 21.7863 34.0575 21.1562 33.2812 21.1562Z"
                     fill="black"
                   />
                 </g>
                 <defs>
                   <clipPath id="clip0_16_43">
                     <rect
-                      width="30.875"
-                      height="30.875"
+                      width="45"
+                      height="45"
                       fill="white"
                       transform="translate(0.9375 0.0625)"
                     />

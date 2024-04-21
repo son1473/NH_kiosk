@@ -22,14 +22,8 @@ function TabPanel(props: TabPanelProps) {
   const { children, value, index, ...other } = props;
 
   return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`vertical-tabpanel-${index}`}
-      aria-labelledby={`vertical-tab-${index}`}
-      {...other}
-    >
-      {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
+    <div role="tabpanel" hidden={value !== index}>
+      {value === index && <Box sx={{ p: 1 }}>{children}</Box>}
     </div>
   );
 }
@@ -63,15 +57,6 @@ function LandingOrder() {
     setRooibosNum(0);
     setEtcNum(0);
   };
-
-  // const [coffeeNum, setCoffeeNum] = useState(0);
-
-  // const handleChangeCoffee = () => {
-  //   setCoffeeNum(coffeeNum + 1);
-  // };
-
-  // const handleChildValueChange = (value: number) => {
-  // };
 
   useEffect(() => {
     const coffeeIcePrice = coffeeIceNum * MENU[menuKey[0]];
@@ -109,116 +94,190 @@ function LandingOrder() {
 
   return (
     <React.Fragment>
-      <Container fixed>
+      <Container>
         {/* Header 부분 */}
-        <Grid container spacing={1} alignItems="center">
+        <Grid
+          container
+          spacing={1}
+          alignItems="center"
+          sx={{ marginTop: "10px", width: "100%" }}
+        >
           <Grid item xs={12} md={4}>
             <Typography
               sx={{
-                fontSize: "15px",
+                display: "inline",
+                font: "25px solid sans-serif ",
+                fontWeight: "bold",
                 textAlign: "center",
               }}
             >
-              주문 번호 : {orderNum}
+              주문 번호 :
+              <Typography
+                sx={{
+                  display: "inline",
+                  font: "40px solid sans-serif ",
+                  fontWeight: "bold",
+                  // textAlign: "center",
+                }}
+              >
+                {orderNum}
+              </Typography>
             </Typography>
           </Grid>
           <Grid item xs={12} md={4} container justifyContent="center">
             <Typography
               sx={{
-                fontSize: "30px",
+                font: "30px solid sans-serif ",
+                fontWeight: "bold",
                 textAlign: "center",
               }}
             >
-              남현 솔라이트 바자회 Cafe
+              NH Cafe
             </Typography>
           </Grid>
           <Grid item xs={12} md={4}>
             {/* 오른쪽에는 빈 공간 */}
           </Grid>
         </Grid>
+        {/* 주문 탭 */}
         <Tabs
-          // orientation="vertical"
-          // variant="scrollable"
           value={value}
           onChange={handleChange}
-          // aria-label="Vertical tabs example"
-          // sx={{ borderRight: 1, borderColor: "divider" }}
+          textColor="secondary"
+          indicatorColor="secondary"
         >
           <Tab label="탭 1" />
           <Tab label="탭 2" />
         </Tabs>
-        <TabPanel value={value} index={0}>
-          <Grid container spacing={1}>
-            <Grid item xs={12} sm={6} md={4}>
-              <OrderMenu
-                menuName={menuKey[0]}
-                beverageNum={coffeeIceNum}
-                setBeverageNum={setCoffeeIceNum}
-              />
-            </Grid>
-            <Grid item xs={12} sm={6} md={4}>
-              <OrderMenu
-                menuName={menuKey[1]}
-                beverageNum={coffeeHotNum}
-                setBeverageNum={setCoffeeHotNum}
-              />
-            </Grid>
-            {/* mixCoffeeNum, iceTeaNum, iceChocoNum, miSutGaruNum, pepermintNum,
+        <Box sx={{ height: "580px" }}>
+          <TabPanel value={value} index={0}>
+            <Grid container spacing={1}>
+              <Grid
+                item
+                xs={12}
+                sm={6}
+                md={4}
+                sx={{ display: "flex", justifyContent: "center" }}
+              >
+                <OrderMenu
+                  menuName={menuKey[0]}
+                  beverageNum={coffeeIceNum}
+                  setBeverageNum={setCoffeeIceNum}
+                />
+              </Grid>
+              <Grid
+                item
+                xs={12}
+                sm={6}
+                md={4}
+                sx={{ display: "flex", justifyContent: "center" }}
+              >
+                <OrderMenu
+                  menuName={menuKey[1]}
+                  beverageNum={coffeeHotNum}
+                  setBeverageNum={setCoffeeHotNum}
+                />
+              </Grid>
+              {/* mixCoffeeNum, iceTeaNum, iceChocoNum, miSutGaruNum, pepermintNum,
             ruibosNum, etcNum, */}
-            <Grid item xs={12} sm={6} md={4}>
-              <OrderMenu
-                menuName={menuKey[2]}
-                beverageNum={mixCoffeeNum}
-                setBeverageNum={setMixCoffeeNum}
-              />
+              <Grid
+                item
+                xs={12}
+                sm={6}
+                md={4}
+                sx={{ display: "flex", justifyContent: "center" }}
+              >
+                <OrderMenu
+                  menuName={menuKey[2]}
+                  beverageNum={mixCoffeeNum}
+                  setBeverageNum={setMixCoffeeNum}
+                />
+              </Grid>
+              <Grid
+                item
+                xs={12}
+                sm={6}
+                md={4}
+                sx={{ display: "flex", justifyContent: "center" }}
+              >
+                <OrderMenu
+                  menuName={menuKey[3]}
+                  beverageNum={iceTeaNum}
+                  setBeverageNum={setIceTeaNum}
+                />
+              </Grid>
+              <Grid
+                item
+                xs={12}
+                sm={6}
+                md={4}
+                sx={{ display: "flex", justifyContent: "center" }}
+              >
+                <OrderMenu
+                  menuName={menuKey[4]}
+                  beverageNum={iceChocoNum}
+                  setBeverageNum={setIceChocoNum}
+                />
+              </Grid>
+              <Grid
+                item
+                xs={12}
+                sm={6}
+                md={4}
+                sx={{ display: "flex", justifyContent: "center" }}
+              >
+                <OrderMenu
+                  menuName={menuKey[5]}
+                  beverageNum={miSutGaruNum}
+                  setBeverageNum={setMiSutGaruNum}
+                />
+              </Grid>
+              <Grid
+                item
+                xs={12}
+                sm={6}
+                md={4}
+                sx={{ display: "flex", justifyContent: "center" }}
+              >
+                <OrderMenu
+                  menuName={menuKey[6]}
+                  beverageNum={peppermintNum}
+                  setBeverageNum={setPeppermintNum}
+                />
+              </Grid>
+              <Grid
+                item
+                xs={12}
+                sm={6}
+                md={4}
+                sx={{ display: "flex", justifyContent: "center" }}
+              >
+                <OrderMenu
+                  menuName={menuKey[7]}
+                  beverageNum={rooibosNum}
+                  setBeverageNum={setRooibosNum}
+                />
+              </Grid>
+              <Grid
+                item
+                xs={12}
+                sm={6}
+                md={4}
+                sx={{ display: "flex", justifyContent: "center" }}
+              >
+                <OrderMenu
+                  menuName={menuKey[8]}
+                  beverageNum={etcNum}
+                  setBeverageNum={setEtcNum}
+                />
+              </Grid>
             </Grid>
-            <Grid item xs={12} sm={6} md={4}>
-              <OrderMenu
-                menuName={menuKey[3]}
-                beverageNum={iceTeaNum}
-                setBeverageNum={setIceTeaNum}
-              />
-            </Grid>
-            <Grid item xs={12} sm={6} md={4}>
-              <OrderMenu
-                menuName={menuKey[4]}
-                beverageNum={iceChocoNum}
-                setBeverageNum={setIceChocoNum}
-              />
-            </Grid>
-            <Grid item xs={12} sm={6} md={4}>
-              <OrderMenu
-                menuName={menuKey[5]}
-                beverageNum={miSutGaruNum}
-                setBeverageNum={setMiSutGaruNum}
-              />
-            </Grid>
-            <Grid item xs={12} sm={6} md={4}>
-              <OrderMenu
-                menuName={menuKey[6]}
-                beverageNum={peppermintNum}
-                setBeverageNum={setPeppermintNum}
-              />
-            </Grid>
-            <Grid item xs={12} sm={6} md={4}>
-              <OrderMenu
-                menuName={menuKey[7]}
-                beverageNum={rooibosNum}
-                setBeverageNum={setRooibosNum}
-              />
-            </Grid>
-            <Grid item xs={12} sm={6} md={4}>
-              <OrderMenu
-                menuName={menuKey[8]}
-                beverageNum={etcNum}
-                setBeverageNum={setEtcNum}
-              />
-            </Grid>
-          </Grid>
-        </TabPanel>
-        <TabPanel value={value} index={1}>
-          2
-        </TabPanel>
+          </TabPanel>
+          <TabPanel value={value} index={1}>
+            2
+          </TabPanel>
+        </Box>
+
         <Box
           sx={{
             // minHeight: "150vh",
@@ -231,10 +290,11 @@ function LandingOrder() {
           <Box
             sx={{
               display: "flex",
-              justifyContent: "space-around",
+              justifyContent: "space-between",
               width: "100%",
               alignItems: "center",
               flexDirection: "row",
+              // margin: "0px 500px",
             }}
           >
             <Button
@@ -243,10 +303,10 @@ function LandingOrder() {
               color="error"
               sx={{
                 // background: "linear-gradient(180deg, #FFF 0%, #FBFCFF 100%)",
-                // boxShadow: "0px 1px 1px 0px rgba(0, 0, 0, 0.10)",
+                boxShadow: "0px 1px 1px 0px rgba(0, 0, 0, 0.10)",
                 // border: "1px solid rgba(201, 216, 255, 1)",
                 borderRadius: "10px",
-                width: "150px",
+                width: "180px",
                 // padding: "0px 25px",
                 height: "90px",
                 textAlign: "center",
@@ -257,35 +317,55 @@ function LandingOrder() {
             >
               전체 삭제
             </Button>
-            <Box>
-              <Typography sx={{ fontWeight: "bold", fontSize: "25px" }}>
-                총 결제금액
-              </Typography>
-              <Typography
-                sx={{ fontWeight: "bold", fontSize: "45px", textAlign: "end" }}
-              >
-                {totalPrice.toLocaleString()}
-              </Typography>
-            </Box>
-            <Button
-              variant="contained"
-              // onClick={handleStartOrder}
-              color="secondary"
+            <Box
               sx={{
-                background: "linear-gradient(180deg, #FFF 0%, #FBFCFF 100%)",
-                boxShadow: "0px 1px 1px 0px rgba(0, 0, 0, 0.10)",
-                border: "1px solid rgba(201, 216, 255, 1)",
-                borderRadius: "10px",
-                width: "336px",
-                height: "110px",
-                textAlign: "center",
-                font: "25px Inter, sans-serif ",
-                fontWeight: "bold",
-                marginBottom: "10px",
+                display: "flex",
+                // justifyContent: "space-between",
+                // width: "100%",
+                alignItems: "center",
+                flexDirection: "row",
               }}
             >
-              주문 접수
-            </Button>
+              <Box sx={{ marginRight: "20px" }}>
+                <Typography
+                  sx={{
+                    fontWeight: "bold",
+                    fontSize: "25px",
+                    textAlign: "end",
+                  }}
+                >
+                  총 결제금액
+                </Typography>
+                <Typography
+                  sx={{
+                    fontWeight: "bold",
+                    fontSize: "45px",
+                    textAlign: "end",
+                  }}
+                >
+                  {totalPrice.toLocaleString()}원
+                </Typography>
+              </Box>
+              <Button
+                variant="contained"
+                // onClick={resetAllValue}
+                color="success"
+                sx={{
+                  // background: "linear-gradient(180deg, #FFF 0%, #FBFCFF 100%)",
+                  boxShadow: "0px 1px 1px 0px rgba(0, 0, 0, 0.10)",
+                  border: "1px solid rgba(201, 216, 255, 1)",
+                  borderRadius: "10px",
+                  width: "340px",
+                  height: "90px",
+                  textAlign: "center",
+                  font: "25px Inter, sans-serif ",
+                  fontWeight: "bold",
+                  marginBottom: "10px",
+                }}
+              >
+                주문 접수
+              </Button>
+            </Box>
           </Box>
         </Box>
       </Container>
