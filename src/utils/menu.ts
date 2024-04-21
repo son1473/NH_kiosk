@@ -1,0 +1,18 @@
+// 문자열을 키로 가지고, 숫자를 값으로 가지는 딕셔너리
+interface StringNumberDictionary {
+  [key: string]: number;
+}
+
+export const MENU: StringNumberDictionary= {
+  "아메리카노(ICE)": 2000,
+  "아메리카노(HOT)": 2000,
+  "믹스커피(맥심)": 2000,
+  "아이스티": 2000,
+  "아이스초코": 2000,
+  "미숫가루": 2000,
+  "페퍼민트 티": 2000,
+  "루이보스 티": 2000,
+  "기타": 1000,
+};
+
+export const menuKey = Object.keys(MENU);

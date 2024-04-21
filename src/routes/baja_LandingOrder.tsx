@@ -1,39 +1,94 @@
-import { Box, Button, Container } from "@mui/material";
-import React, { useEffect } from "react";
+import { Box, Button, Container, TextField, Typography } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { MENU, menuKey } from "utils/menu";
+import OrderMenu from "./../components/baja/OrderMenu";
 
 function LandingOrder() {
-  useEffect(() => {
-    // 이 곳에 필요한 초기화 작업을 수행할 수 있습니다.
-  }, []);
+  const [coffeeNum, setCoffeeNum] = useState(0);
+  const [totalPrice, setTotalPrice] = useState(0);
 
-  const handleStartOrder = () => {
-    // 주문 시작하기 버튼 클릭 시 실행되는 함수
-    console.log("주문 시작하기");
-    // 추가적인 작업을 수행할 수 있습니다.
+  // const handleChangeCoffee = () => {
+  //   setCoffeeNum(coffeeNum + 1);
+  // };
+
+  const handleChildValueChange = (value: number) => {
+    setTotalPrice(value);
   };
+
+  // useEffect(() => {
+  //   setTotalPrice(coffeeNum * 2000);
+  // }, [coffeeNum]);
 
   return (
     <React.Fragment>
       <Container fixed>
+        <Typography
+          sx={{
+            fontSize: "50px",
+            textAlign: "center",
+          }}
+        >
+          남현 솔라이트 바자회 Cafe
+        </Typography>
         <Box
           sx={{
             // minHeight: "150vh",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
+            flexDirection: "column",
           }}
         >
-          남현 솔라이트 바자회
-          <Button
-            variant="contained"
-            onClick={handleStartOrder}
-            color="secondary"
+          <OrderMenu
+            menuName={menuKey[0]}
+            totalPrice={totalPrice}
+            setTotalPrice={handleChildValueChange}
+            />
+          <OrderMenu
+            menuName={menuKey[1]}
+            totalPrice={totalPrice}
+            setTotalPrice={handleChildValueChange}
+          />
+
+          <Box
             sx={{
-              width: "150px"
+              display: "flex",
+              justifyContent: "space-around",
+              width: "100%",
+              alignItems: "center",
+              flexDirection: "row",
             }}
           >
-            주문 시작하기
-          </Button>
+            <Box>
+              <Typography sx={{ fontWeight: "bold", fontSize: "25px" }}>
+                총 결제금액
+              </Typography>
+              <Typography
+                sx={{ fontWeight: "bold", fontSize: "25px", textAlign: "end" }}
+              >
+                {totalPrice}
+              </Typography>
+            </Box>
+            <Button
+              variant="contained"
+              // onClick={handleStartOrder}
+              color="secondary"
+              sx={{
+                background: "linear-gradient(180deg, #FFF 0%, #FBFCFF 100%)",
+                boxShadow: "0px 1px 1px 0px rgba(0, 0, 0, 0.10)",
+                border: "1px solid rgba(201, 216, 255, 1)",
+                borderRadius: "10px",
+                width: "336px",
+                height: "110px",
+                textAlign: "center",
+                font: "25px Inter, sans-serif ",
+                fontWeight: "bold",
+                marginBottom: "10px",
+              }}
+            >
+              주문 접수
+            </Button>
+          </Box>
         </Box>
       </Container>
     </React.Fragment>
