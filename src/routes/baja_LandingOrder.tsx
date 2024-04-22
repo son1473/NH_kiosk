@@ -141,7 +141,7 @@ function LandingOrder() {
     const querySnapshot = await getDocs(orderQuery);
     let data = querySnapshot.docs.map((doc) => doc.data())
     const orderData = data[data.length-1]
-    console.log(orderData,'출력')
+    console.log(orderData,'마지막 주문 정보 출력')
     const orderId = orderData['orderNum']
     setOrderNum(orderId+1)
   }
