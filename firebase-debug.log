@@ -1,0 +1,125 @@
+[debug] [2024-04-22T09:29:59.157Z] ----------------------------------------------------------------------
+[debug] [2024-04-22T09:29:59.160Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\USER\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2024-04-22T09:29:59.160Z] CLI Version:   13.7.3
+[debug] [2024-04-22T09:29:59.160Z] Platform:      win32
+[debug] [2024-04-22T09:29:59.161Z] Node Version:  v20.12.2
+[debug] [2024-04-22T09:29:59.161Z] Time:          Mon Apr 22 2024 18:29:59 GMT+0900 (대한민국 표준시)
+[debug] [2024-04-22T09:29:59.161Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-04-22T09:29:59.219Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-04-22T09:29:59.220Z] > authorizing via signed-in user (zl6575@gmail.com)
+[debug] [2024-04-22T09:29:59.220Z] [iam] checking project nhbaja-fab24 for permissions ["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2024-04-22T09:29:59.221Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/nhbaja-fab24:testIamPermissions [none]
+[debug] [2024-04-22T09:29:59.221Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/nhbaja-fab24:testIamPermissions x-goog-quota-user=projects/nhbaja-fab24
+[debug] [2024-04-22T09:29:59.221Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/nhbaja-fab24:testIamPermissions {"permissions":["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2024-04-22T09:30:00.117Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/nhbaja-fab24:testIamPermissions 200
+[debug] [2024-04-22T09:30:00.117Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/nhbaja-fab24:testIamPermissions {"permissions":["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2024-04-22T09:30:00.117Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/nhbaja-fab24 [none]
+[debug] [2024-04-22T09:30:00.484Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/nhbaja-fab24 200
+[debug] [2024-04-22T09:30:00.484Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/nhbaja-fab24 {"projectId":"nhbaja-fab24","projectNumber":"578490009559","displayName":"NHbaja","name":"projects/nhbaja-fab24","resources":{"hostingSite":"nhbaja-fab24"},"state":"ACTIVE","etag":"1_7b847383-4a78-4c78-8a54-11f8e0d6bc97"}
+[info] 
+[info] === Deploying to 'nhbaja-fab24'...
+[info] 
+[info] i  deploying firestore, hosting 
+[info] i  firestore: reading indexes from firestore.indexes.json... 
+[info] i  cloud.firestore: checking firestore.rules for compilation errors... 
+[debug] [2024-04-22T09:30:00.489Z] >>> [apiv2][query] POST https://firebaserules.googleapis.com/v1/projects/nhbaja-fab24:test [none]
+[debug] [2024-04-22T09:30:00.489Z] >>> [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/nhbaja-fab24:test [omitted]
+[debug] [2024-04-22T09:30:01.699Z] <<< [apiv2][status] POST https://firebaserules.googleapis.com/v1/projects/nhbaja-fab24:test 200
+[debug] [2024-04-22T09:30:01.699Z] <<< [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/nhbaja-fab24:test {}
+[info] +  cloud.firestore: rules file firestore.rules compiled successfully 
+[debug] [2024-04-22T09:30:01.703Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/nhbaja-fab24/versions [none]
+[debug] [2024-04-22T09:30:01.703Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/nhbaja-fab24/versions {"status":"CREATED","labels":{"deployment-tool":"cli-firebase"}}
+[debug] [2024-04-22T09:30:02.697Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/nhbaja-fab24/versions 200
+[debug] [2024-04-22T09:30:02.697Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/nhbaja-fab24/versions {"name":"projects/578490009559/sites/nhbaja-fab24/versions/a812571ebe0f35be","status":"CREATED","config":{},"labels":{"deployment-tool":"cli-firebase"}}
+[info] i  firestore: deploying indexes... 
+[debug] [2024-04-22T09:30:22.742Z] >>> [apiv2][query] GET https://firebaserules.googleapis.com/v1/projects/nhbaja-fab24/releases pageSize=10&pageToken=
+[debug] [2024-04-22T09:30:22.743Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/nhbaja-fab24/databases/(default)/collectionGroups/-/indexes [none]
+[debug] [2024-04-22T09:30:22.888Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/nhbaja-fab24/databases/(default)/collectionGroups/-/indexes 200
+[debug] [2024-04-22T09:30:22.888Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/nhbaja-fab24/databases/(default)/collectionGroups/-/indexes {}
+[debug] [2024-04-22T09:30:22.888Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/nhbaja-fab24/databases/(default)/collectionGroups/-/fields?filter=indexConfig.usesAncestorConfig=false OR ttlConfig:* [none]
+[debug] [2024-04-22T09:30:22.971Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/nhbaja-fab24/databases/(default)/collectionGroups/-/fields?filter=indexConfig.usesAncestorConfig=false OR ttlConfig:* 200
+[debug] [2024-04-22T09:30:22.971Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/nhbaja-fab24/databases/(default)/collectionGroups/-/fields?filter=indexConfig.usesAncestorConfig=false OR ttlConfig:* {"fields":[{"name":"projects/nhbaja-fab24/databases/(default)/collectionGroups/__default__/fields/*","indexConfig":{"indexes":[{"queryScope":"COLLECTION","fields":[{"fieldPath":"*","order":"ASCENDING"}],"state":"READY"},{"queryScope":"COLLECTION","fields":[{"fieldPath":"*","order":"DESCENDING"}],"state":"READY"},{"queryScope":"COLLECTION","fields":[{"fieldPath":"*","arrayConfig":"CONTAINS"}],"state":"READY"}]}}]}
+[info] +  firestore: deployed indexes in firestore.indexes.json successfully for (default) database 
+[debug] [2024-04-22T09:30:23.923Z] <<< [apiv2][status] GET https://firebaserules.googleapis.com/v1/projects/nhbaja-fab24/releases 200
+[debug] [2024-04-22T09:30:23.924Z] <<< [apiv2][body] GET https://firebaserules.googleapis.com/v1/projects/nhbaja-fab24/releases {"releases":[{"name":"projects/nhbaja-fab24/releases/cloud.firestore","rulesetName":"projects/nhbaja-fab24/rulesets/e708fbf5-2bd8-47ab-9cbc-79a3c4dd3e0f","createTime":"2024-04-22T06:29:14.904254Z","updateTime":"2024-04-22T09:19:57.717558Z"}]}
+[debug] [2024-04-22T09:30:23.924Z] >>> [apiv2][query] GET https://firebaserules.googleapis.com/v1/projects/nhbaja-fab24/rulesets/e708fbf5-2bd8-47ab-9cbc-79a3c4dd3e0f [none]
+[debug] [2024-04-22T09:30:24.973Z] <<< [apiv2][status] GET https://firebaserules.googleapis.com/v1/projects/nhbaja-fab24/rulesets/e708fbf5-2bd8-47ab-9cbc-79a3c4dd3e0f 200
+[debug] [2024-04-22T09:30:24.973Z] <<< [apiv2][body] GET https://firebaserules.googleapis.com/v1/projects/nhbaja-fab24/rulesets/e708fbf5-2bd8-47ab-9cbc-79a3c4dd3e0f [omitted]
+[info] i  firestore: latest version of firestore.rules already up to date, skipping upload... 
+[info] i  hosting[nhbaja-fab24]: beginning deploy... 
+[info] i  hosting[nhbaja-fab24]: found 26 files in build 
+[debug] [2024-04-22T09:30:25.022Z] [hosting] uploading with 200 concurrency
+[debug] [2024-04-22T09:30:25.444Z] [hosting] hash cache [YnVpbGQ] stored for 26 files
+[debug] [2024-04-22T09:30:25.445Z] [hosting][hash queue][FINAL] {"max":380,"min":5,"avg":24.53846153846154,"active":0,"complete":26,"success":26,"errored":0,"retried":0,"total":26,"elapsed":419}
+[debug] [2024-04-22T09:30:25.445Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/578490009559/sites/nhbaja-fab24/versions/a812571ebe0f35be:populateFiles [none]
+[debug] [2024-04-22T09:30:25.445Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/578490009559/sites/nhbaja-fab24/versions/a812571ebe0f35be:populateFiles {"files":{"/favicon.ico":"27edce7be5922cf0bef7d4136f69b5bfbdd5bf8c13c7b026f71187d41a00aa7d","/logo.png":"c6d3151589a9c7afbb565e364750308cabc5bd950c130799e9fe10331fe71471","/logo192.png":"79e2b749561016bc8af300ea19f48347ceed3cb1a54f48ae456172eca45e08f0","/logo512.png":"212b102aa09e51b3b3e06647e81f7801a61333e171f6582e8124379aabccb41d","/manifest.json":"6853c4ed6d7fad6ada4a6e3a5a2fef0846c0af7d1b0df0a952aa5a232c7d9401","/robots.txt":"b2090cf9761ef60aa06e4fab97679bd43dfa5e5df073701ead5879d7c68f1ec5","/images/9789-burger-menu.json":"9de241006ecb0b25845a9159473373a86dfc6432c11200deeed1bdce862e599b","/images/Component 6 – 1.png":"97dd59ad0930a5149bf9e2bd3d8ab662f9247e9f5997aec39e0c80610ec3e144","/images/double-02-double.jpg":"4238010a81e7dfa26dbebccae2044f52e70914324dee8212087fe6dadb0d7268","/images/double-icon-blur.png":"6c37e2433871636da791514df92af9db92cb5ac5ac847e9316cc2193684b2c53","/images/double-icon.png":"bed2355a689b657439754d982c51ad3f1ef4e4322434fa7fc82f435265ae78cf","/images/jaws-03-Current-View.jpg":"e9ffe5228a93bb47dd0235c498a2ca8b1fea895556ce826a5bf6553921127040","/images/jaws-icon-blur.png":"1ab1462c2b2b966b9585b586c54d8eb5449669aa9921c7d344da0eff5f947429","/images/jaws-icon.png":"3fdf46fe4bb5b7d4fbe936278923409fee37e0e175ac392c3562784372fbf080","/images/logo.png":"e069da6018942af1ec5258215c3fb7f57df769e4c6271b30a456830591b33ad1","/images/magnifying-glass-browser.png":"c736f203a59bcee97306606b37aaa185d42a959c8485a10a66fa97cef47c1e22","/images/watermelon-icon-blur.png":"b574c2357432da378c29463c5fe3abf32492978df05a568dcf3cdb0faf3d4580","/images/watermelon-icon.png":"54602361d97a5ea7d68b9cd62743f375cda7588c2328d71f4c4a18d80e608130","/images/watermelon-png-watermelon.jpg":"fbc0d179622e618bba84ba66ad536ad576c3362c2bb87baba216ae23d63d4e7a","/asset-manifest.json":"ac94264a32030102ed02812cdbafedb5654a5ee15672fd60348c2cf987911851","/index.html":"1f47b059e860d33aa4cc1582f4aac7cad0deff1148edc38a49a985182d95984f","/static/css/main.e6c13ad2.css.map":"6351340741dcff651859d16866dd7a726934e1de6d8a584cb6a312e083d28839","/static/css/main.e6c13ad2.css":"10675dc14dd390bf45eef8a0221880c7b5b9a5ac519a13bc0890261e6b1e84fa","/static/js/main.015068c0.js.LICENSE.txt":"afa45248981aabc539bd2554e570b4bf237d0cac6d2c78ab05adfa78c66f78ef","/static/js/main.015068c0.js":"d4d0b2596602a44a8e03925fb1280fa9cb2a96f0dda4cbea90eb620360dc6697","/static/js/main.015068c0.js.map":"975dc294e37bc997125f6a38a20bdbc0e30b50f50655576429b04b26e558200c"}}
+[debug] [2024-04-22T09:30:26.245Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/578490009559/sites/nhbaja-fab24/versions/a812571ebe0f35be:populateFiles 200
+[debug] [2024-04-22T09:30:26.245Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/578490009559/sites/nhbaja-fab24/versions/a812571ebe0f35be:populateFiles {"uploadRequiredHashes":["d4d0b2596602a44a8e03925fb1280fa9cb2a96f0dda4cbea90eb620360dc6697","ac94264a32030102ed02812cdbafedb5654a5ee15672fd60348c2cf987911851","975dc294e37bc997125f6a38a20bdbc0e30b50f50655576429b04b26e558200c","1f47b059e860d33aa4cc1582f4aac7cad0deff1148edc38a49a985182d95984f"],"uploadUrl":"https://upload-firebasehosting.googleapis.com/upload/sites/nhbaja-fab24/versions/a812571ebe0f35be/files"}
+[debug] [2024-04-22T09:30:26.248Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/nhbaja-fab24/versions/a812571ebe0f35be/files/d4d0b2596602a44a8e03925fb1280fa9cb2a96f0dda4cbea90eb620360dc6697 [none]
+[debug] [2024-04-22T09:30:26.248Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/nhbaja-fab24/versions/a812571ebe0f35be/files/d4d0b2596602a44a8e03925fb1280fa9cb2a96f0dda4cbea90eb620360dc6697 [stream]
+[debug] [2024-04-22T09:30:26.252Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/nhbaja-fab24/versions/a812571ebe0f35be/files/ac94264a32030102ed02812cdbafedb5654a5ee15672fd60348c2cf987911851 [none]
+[debug] [2024-04-22T09:30:26.252Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/nhbaja-fab24/versions/a812571ebe0f35be/files/ac94264a32030102ed02812cdbafedb5654a5ee15672fd60348c2cf987911851 [stream]
+[debug] [2024-04-22T09:30:26.255Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/nhbaja-fab24/versions/a812571ebe0f35be/files/975dc294e37bc997125f6a38a20bdbc0e30b50f50655576429b04b26e558200c [none]
+[debug] [2024-04-22T09:30:26.255Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/nhbaja-fab24/versions/a812571ebe0f35be/files/975dc294e37bc997125f6a38a20bdbc0e30b50f50655576429b04b26e558200c [stream]
+[debug] [2024-04-22T09:30:26.256Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/nhbaja-fab24/versions/a812571ebe0f35be/files/1f47b059e860d33aa4cc1582f4aac7cad0deff1148edc38a49a985182d95984f [none]
+[debug] [2024-04-22T09:30:26.256Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/nhbaja-fab24/versions/a812571ebe0f35be/files/1f47b059e860d33aa4cc1582f4aac7cad0deff1148edc38a49a985182d95984f [stream]
+[debug] [2024-04-22T09:30:26.260Z] [hosting][populate queue][FINAL] {"max":827,"min":827,"avg":827,"active":0,"complete":1,"success":1,"errored":0,"retried":0,"total":1,"elapsed":839}
+[debug] [2024-04-22T09:30:26.261Z] [hosting] uploads queued: 4
+[debug] [2024-04-22T09:30:27.579Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/nhbaja-fab24/versions/a812571ebe0f35be/files/1f47b059e860d33aa4cc1582f4aac7cad0deff1148edc38a49a985182d95984f 200
+[debug] [2024-04-22T09:30:27.579Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/nhbaja-fab24/versions/a812571ebe0f35be/files/1f47b059e860d33aa4cc1582f4aac7cad0deff1148edc38a49a985182d95984f [stream]
+[debug] [2024-04-22T09:30:27.708Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/nhbaja-fab24/versions/a812571ebe0f35be/files/ac94264a32030102ed02812cdbafedb5654a5ee15672fd60348c2cf987911851 200
+[debug] [2024-04-22T09:30:27.709Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/nhbaja-fab24/versions/a812571ebe0f35be/files/ac94264a32030102ed02812cdbafedb5654a5ee15672fd60348c2cf987911851 [stream]
+[debug] [2024-04-22T09:30:27.829Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/nhbaja-fab24/versions/a812571ebe0f35be/files/d4d0b2596602a44a8e03925fb1280fa9cb2a96f0dda4cbea90eb620360dc6697 200
+[debug] [2024-04-22T09:30:27.829Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/nhbaja-fab24/versions/a812571ebe0f35be/files/d4d0b2596602a44a8e03925fb1280fa9cb2a96f0dda4cbea90eb620360dc6697 [stream]
+[debug] [2024-04-22T09:30:28.189Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/nhbaja-fab24/versions/a812571ebe0f35be/files/975dc294e37bc997125f6a38a20bdbc0e30b50f50655576429b04b26e558200c 200
+[debug] [2024-04-22T09:30:28.190Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/nhbaja-fab24/versions/a812571ebe0f35be/files/975dc294e37bc997125f6a38a20bdbc0e30b50f50655576429b04b26e558200c [stream]
+[debug] [2024-04-22T09:30:28.191Z] [hosting][upload queue][FINAL] {"max":1944,"min":1332,"avg":1582.5,"active":0,"complete":4,"success":4,"errored":0,"retried":0,"total":4,"elapsed":1945}
+[info] +  hosting[nhbaja-fab24]: file upload complete 
+[debug] [2024-04-22T09:30:28.193Z] [hosting] deploy completed after 3213ms
+[debug] [2024-04-22T09:30:28.193Z] [rules] releasing cloud.firestore/(default) with ruleset projects/nhbaja-fab24/rulesets/e708fbf5-2bd8-47ab-9cbc-79a3c4dd3e0f
+[debug] [2024-04-22T09:30:28.194Z] >>> [apiv2][query] PATCH https://firebaserules.googleapis.com/v1/projects/nhbaja-fab24/releases/cloud.firestore/(default) [none]
+[debug] [2024-04-22T09:30:28.195Z] >>> [apiv2][body] PATCH https://firebaserules.googleapis.com/v1/projects/nhbaja-fab24/releases/cloud.firestore/(default) {"release":{"name":"projects/nhbaja-fab24/releases/cloud.firestore/(default)","rulesetName":"projects/nhbaja-fab24/rulesets/e708fbf5-2bd8-47ab-9cbc-79a3c4dd3e0f"}}
+[debug] [2024-04-22T09:30:29.285Z] <<< [apiv2][status] PATCH https://firebaserules.googleapis.com/v1/projects/nhbaja-fab24/releases/cloud.firestore/(default) 200
+[debug] [2024-04-22T09:30:29.285Z] <<< [apiv2][body] PATCH https://firebaserules.googleapis.com/v1/projects/nhbaja-fab24/releases/cloud.firestore/(default) {"name":"projects/nhbaja-fab24/releases/cloud.firestore","rulesetName":"projects/nhbaja-fab24/rulesets/e708fbf5-2bd8-47ab-9cbc-79a3c4dd3e0f","createTime":"2024-04-22T06:29:14.904254Z","updateTime":"2024-04-22T09:30:24.550568Z"}
+[debug] [2024-04-22T09:30:29.285Z] [rules] updated release projects/nhbaja-fab24/releases/cloud.firestore
+[info] +  firestore: released rules firestore.rules to cloud.firestore 
+[debug] [2024-04-22T09:30:29.286Z] [
+  {
+    "config": {
+      "public": "build",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "site": "nhbaja-fab24"
+    },
+    "version": "projects/578490009559/sites/nhbaja-fab24/versions/a812571ebe0f35be"
+  }
+]
+[info] i  hosting[nhbaja-fab24]: finalizing version... 
+[debug] [2024-04-22T09:30:29.289Z] >>> [apiv2][query] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/nhbaja-fab24/versions/a812571ebe0f35be updateMask=status%2Cconfig
+[debug] [2024-04-22T09:30:29.289Z] >>> [apiv2][body] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/nhbaja-fab24/versions/a812571ebe0f35be {"status":"FINALIZED","config":{}}
+[debug] [2024-04-22T09:30:29.949Z] <<< [apiv2][status] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/nhbaja-fab24/versions/a812571ebe0f35be 200
+[debug] [2024-04-22T09:30:29.949Z] <<< [apiv2][body] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/nhbaja-fab24/versions/a812571ebe0f35be {"name":"projects/578490009559/sites/nhbaja-fab24/versions/a812571ebe0f35be","status":"FINALIZED","config":{},"labels":{"deployment-tool":"cli-firebase"},"createTime":"2024-04-22T09:29:57.673552Z","createUser":{"email":"zl6575@gmail.com"},"finalizeTime":"2024-04-22T09:30:25.211564Z","finalizeUser":{"email":"zl6575@gmail.com"}}
+[debug] [2024-04-22T09:30:29.950Z] [hosting] finalized version for nhbaja-fab24:[object Object]
+[info] +  hosting[nhbaja-fab24]: version finalized 
+[info] i  hosting[nhbaja-fab24]: releasing new version... 
+[debug] [2024-04-22T09:30:29.950Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/nhbaja-fab24/channels/live/releases versionName=projects%2F578490009559%2Fsites%2Fnhbaja-fab24%2Fversions%2Fa812571ebe0f35be
+[debug] [2024-04-22T09:30:29.950Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/nhbaja-fab24/channels/live/releases {}
+[debug] [2024-04-22T09:30:30.629Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/nhbaja-fab24/channels/live/releases 200
+[debug] [2024-04-22T09:30:30.629Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/nhbaja-fab24/channels/live/releases {"name":"projects/578490009559/sites/nhbaja-fab24/channels/live/releases/1713778225252000","version":{"name":"projects/578490009559/sites/nhbaja-fab24/versions/a812571ebe0f35be","status":"FINALIZED","config":{},"labels":{"deployment-tool":"cli-firebase"},"createTime":"2024-04-22T09:29:57.673552Z","createUser":{"email":"zl6575@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocIe0CkVfohbXiiUhyYfiS-Y45yh5MWJ7LjTrlWl_ShNf-0PfHM=mo"},"finalizeTime":"2024-04-22T09:30:25.211564Z","finalizeUser":{"email":"zl6575@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocIe0CkVfohbXiiUhyYfiS-Y45yh5MWJ7LjTrlWl_ShNf-0PfHM=mo"}},"type":"DEPLOY","releaseTime":"2024-04-22T09:30:25.252Z","releaseUser":{"email":"zl6575@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocIe0CkVfohbXiiUhyYfiS-Y45yh5MWJ7LjTrlWl_ShNf-0PfHM=mo"}}
+[debug] [2024-04-22T09:30:30.629Z] [hosting] release: {"name":"projects/578490009559/sites/nhbaja-fab24/channels/live/releases/1713778225252000","version":{"name":"projects/578490009559/sites/nhbaja-fab24/versions/a812571ebe0f35be","status":"FINALIZED","config":{},"labels":{"deployment-tool":"cli-firebase"},"createTime":"2024-04-22T09:29:57.673552Z","createUser":{"email":"zl6575@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocIe0CkVfohbXiiUhyYfiS-Y45yh5MWJ7LjTrlWl_ShNf-0PfHM=mo"},"finalizeTime":"2024-04-22T09:30:25.211564Z","finalizeUser":{"email":"zl6575@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocIe0CkVfohbXiiUhyYfiS-Y45yh5MWJ7LjTrlWl_ShNf-0PfHM=mo"}},"type":"DEPLOY","releaseTime":"2024-04-22T09:30:25.252Z","releaseUser":{"email":"zl6575@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocIe0CkVfohbXiiUhyYfiS-Y45yh5MWJ7LjTrlWl_ShNf-0PfHM=mo"}}
+[info] +  hosting[nhbaja-fab24]: release complete 
+[info] 
+[info] +  Deploy complete! 
+[info] 
+[info] Project Console: https://console.firebase.google.com/project/nhbaja-fab24/overview
+[info] Hosting URL: https://nhbaja-fab24.web.app
+[debug] [2024-04-22T09:31:01.698Z] Error: Timed out.
+    at Timeout._onTimeout (C:\Users\USER\AppData\Roaming\npm\node_modules\firebase-tools\lib\utils.js:261:49)
+    at listOnTimeout (node:internal/timers:573:17)
+    at process.processTimers (node:internal/timers:514:7)
+[error] 
+[error] Error: An unexpected error has occurred.

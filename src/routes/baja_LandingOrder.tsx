@@ -9,6 +9,13 @@ import React, { useEffect, useState } from "react";
 import { MENU, menuKey } from "utils/menu";
 import OrderMenu from "./../components/baja/OrderMenu";
 import orderService from "services/order.service";
+import { db } from "./../firebase";
+import { addDoc, collection, doc, getDoc, getDocs, limit, orderBy, query, serverTimestamp } from "firebase/firestore/lite";
+// import { getDoc, doc } from 'firebase/firestore/lite'
+// import {collection, getDocs } from 'firebase/firestore';
+
+// import { collection, getDocs } from 'firebase/firestore';
+
 
 function LandingOrder() {
   const [coffeeIceNum, setCoffeeIceNum] = useState(0);
@@ -105,27 +112,102 @@ function LandingOrder() {
   ]);
 
   // 주문 접수 코드
-  const handleSubmit = () => {
-    const data = {
+  const handleSubmit = async () => {
+    const currentTime = serverTimestamp(); // 현재 시간 가져오기
+
+    const newOrderData = {
       'orderNum' : orderNum,
-      'orderList' : orderDetails,
+      'orderDetails' : orderDetails,
       'totalPrice' : totalPrice,
+      'created_at' : currentTime
     }
-    console.log(data, "출력!")
-    resetAllValue()
-    setOrderNum(orderNum+1)
-    
+    const orderCollectionRef = collection(db, 'orders'); // 'orders' 컬렉션에 대한 참조 생성
+    console.log(newOrderData, "출력!") 
+    try {
+      const docRef = await addDoc(orderCollectionRef, newOrderData); // 새로운 주문 문서를 추가
+      console.log('새로운 주문이 성공적으로 추가되었습니다. 문서 ID:', docRef.id);
+  } catch (error) {
+      console.error('주문 추가 중 오류 발생:', error);
   }
+    resetAllValue();
+    getOrderId();
+  }
+
+
+
+  async function getOrderId() {
+    const collectionRef = collection(db, 'orders');
+    const orderQuery = query(collectionRef, orderBy('created_at', 'desc'), limit(1)); // createdAt 필드를 기준으로 내림차순으로 정렬하여 최신 문서 1개만 가져오기
+    const querySnapshot = await getDocs(orderQuery);
+    let data = querySnapshot.docs.map((doc) => doc.data())
+    const orderData = data[data.length-1]
+    console.log(orderData,'출력')
+    const orderId = orderData['orderNum']
+    setOrderNum(orderId+1)
+    // return fetchedData;
+    
+
+    // const orders = doc(db, 'orders', 'orderForm');
+    // return data
+
+    // querySnapshot.forEach((doc) => {
+    //   console.log(doc.id, " => ", doc.data());
+    // });
+  
+
+    // const orders = doc(db, 'orders');
+    // const ordersSnapshot = await getDoc(orders);
+  
+    // if (!ordersSnapshot.exists()) {
+      // return null;
+    // }
+    // console.log(ordersSnapshot.data(), 'ㄱㄱ')
+    // const fetchedData = ordersSnapshot.data()
+    // const orderId = fetchedData['orderNum']
+    // setOrderNum(orderId+1)
+    // return fetchedData;
+    
+
+
+  }
+
+
+
+  // 데이터 가져오는 함수
+//   const fetchData = async () => {
+//   try {
+//     const querySnapshot = await getDocs(collection(db, 'orders'));
+//     const data = querySnapshot.docs.map((doc) => ({
+//       id: doc.id,
+//       ...doc.data(),
+//     }));
+//     console.log(data, '출력!!!')
+//     return data;
+//   } catch (error) {
+//     console.error('Error fetching data:', error);
+//     return [];
+//   }
+// };
+//   const [data, setData] = useState<any[]>([]);
+
 
   // 랜더링 시에만, 주문 번호 가져오기.
   useEffect(() => {
-    const fetchData = async () => {
-      const response = await orderService.getOrderNum();
-      setOrderNum(response);
-    };
+    getOrderId();
+    // getTest();
+    // const getData = async () => {
+    //   const fetchedData = await fetchData();
+    //   setData(fetchedData);
+    // };
+
+    // getData();
+    // console.log(data, '데이터 출력!')
 
     // fetchData();
   }, []);
+
+  
+  
 
   return (
     <React.Fragment>
