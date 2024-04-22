@@ -3,30 +3,12 @@ import {
   Button,
   Container,
   Grid,
-  Tab,
-  Tabs,
-  TextField,
   Typography,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { MENU, menuKey } from "utils/menu";
 import OrderMenu from "./../components/baja/OrderMenu";
-
-interface TabPanelProps {
-  children?: React.ReactNode;
-  index: number;
-  value: number;
-}
-
-function TabPanel(props: TabPanelProps) {
-  const { children, value, index, ...other } = props;
-
-  return (
-    <div role="tabpanel" hidden={value !== index}>
-      {value === index && <Box sx={{ p: 1}}>{children}</Box>}
-    </div>
-  );
-}
+import orderService from "services/order.service";
 
 function LandingOrder() {
   const [coffeeIceNum, setCoffeeIceNum] = useState(0);
@@ -122,6 +104,7 @@ function LandingOrder() {
     etcNum,
   ]);
 
+  // 주문 접수 코드
   const handleSubmit = () => {
     const data = {
       'orderNum' : orderNum,
@@ -129,9 +112,20 @@ function LandingOrder() {
       'totalPrice' : totalPrice,
     }
     console.log(data, "출력!")
-
-
+    resetAllValue()
+    setOrderNum(orderNum+1)
+    
   }
+
+  // 랜더링 시에만, 주문 번호 가져오기.
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await orderService.getOrderNum();
+      setOrderNum(response);
+    };
+
+    // fetchData();
+  }, []);
 
   return (
     <React.Fragment>
