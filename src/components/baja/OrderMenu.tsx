@@ -13,10 +13,11 @@ const OrderMenu = ({
   beverageNum,
   setBeverageNum,
 }: OrderMenuProps) => {
-  const buttonColor = beverageNum > 0 ? "red" : "black";
+  const buttonColor = beverageNum > 0 ? "blue" : "black";
+  const borderColor = beverageNum > 0 ? "blue" : "rgba(201, 216, 255, 1)";
 
   return (
-    <Box sx={{ width: "336px" }}>
+    <Box sx={{ width: "100%" }}>
       <Button
         onClick={() => {
           setBeverageNum(beverageNum + 1);
@@ -25,11 +26,14 @@ const OrderMenu = ({
           background: "linear-gradient(180deg, #FFF 0%, #FBFCFF 100%)",
           boxShadow: "0px 1px 1px 0px rgba(0, 0, 0, 0.10)",
           border: "1px solid rgba(201, 216, 255, 1)",
+          borderColor: borderColor,
           borderRadius: "10px",
-          width: "336px",
-          height: "110px",
+          width: "100%",
+          // width: "336px",
+          height: "15vh",
+          // height: "110px",
           textAlign: "center",
-          font: "25px Inter, sans-serif ",
+          font: "3vh Inter, sans-serif ",
           fontWeight: "bold",
           marginBottom: "5px",
         }}
@@ -53,11 +57,12 @@ const OrderMenu = ({
             alignItems: "center",
           }}
         >
+          {/* 마이너스 버튼 */}
           <Button
             sx={{
               minWidth: "auto",
               "& .MuiButton-startIcon": {
-                margin: "0px 10px",
+                margin: "0px",
               },
             }}
             onClick={() => {
@@ -67,8 +72,11 @@ const OrderMenu = ({
             }}
             startIcon={
               <svg
-                width="45"
-                height="45"
+              style={{maxWidth: '45px',
+              maxHeight: '45px',
+              width: '6vh',
+              height: '6vh',
+            }}
                 viewBox="0 0 45 45"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -87,7 +95,7 @@ const OrderMenu = ({
               </svg>
             }
           ></Button>
-
+          {/* 개수 입력 창 */}
           <TextField
             variant="outlined"
             // defaultValue={beverageNum}
@@ -97,16 +105,24 @@ const OrderMenu = ({
                 style: {
                   textAlign: "center",
                   // verticalAlign: "middle",
-                  // padding: "6px",
-                  fontSize: "1.2rem",
+                  padding: "0",
+                  // fontSize: "1.2rem",
+                  fontSize: "2.8vh",
+                  // fontSize: "2.3vw",
                   // color: "secondary",
                 },
               },
               style: {
                 borderRadius: "50px",
                 // minWidth: "38px",
-                width: "50px",
-                height: "50px",
+                width: "7vh",
+                height: "7vh",
+                maxWidth: '45px',
+                maxHeight: '45px',
+              // width: '6vh',
+              // height: '6vh',
+            
+                
                 // padding: "6px",
                 color: buttonColor,
                 fontWeight: "bold",
@@ -127,20 +143,30 @@ const OrderMenu = ({
               }
             }}
           />
+          {/* 플러스 버튼 */}
           <Button
             onClick={() => {
               setBeverageNum(beverageNum + 1);
             }}
             sx={{
               minWidth: "auto", // 최소 너비를 자동으로 설정하여 아이콘에 맞춤
+              // maxWidth: "20px", // 최소 너비를 자동으로 설정하여 아이콘에 맞춤
               "& .MuiButton-startIcon": {
-                margin: "0px 10px", // 아이콘과 텍스트 사이의 간격 조정
+                margin: "0px", // 아이콘과 텍스트 사이의 간격 조정
               },
             }}
             startIcon={
               <svg
-                width="46"
-                height="46"
+              style={{maxWidth: '45px',
+              maxHeight: '45px',
+              width: '6vh',
+              height: '6vh',
+            }}
+
+              // max-width="30px"
+              // max-height="30px"
+              // width="6vh"
+              // height="6vh"
                 viewBox="0 0 46 46"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -165,7 +191,7 @@ const OrderMenu = ({
             }
           ></Button>
         </Box>
-        <Typography sx={{ fontWeight: "bold", fontSize: "25px" }}>
+        <Typography sx={{ fontWeight: "bold", fontSize: {xs: "4.5vw", sm: "3.5vw", md:"2vw", lg:"2vw"}, textAlign:'start' }}>
           {(beverageNum * MENU[menuName]).toLocaleString()}
         </Typography>
       </Box>

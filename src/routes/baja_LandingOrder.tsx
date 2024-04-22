@@ -23,78 +23,119 @@ function TabPanel(props: TabPanelProps) {
 
   return (
     <div role="tabpanel" hidden={value !== index}>
-      {value === index && <Box sx={{ p: 1 }}>{children}</Box>}
+      {value === index && <Box sx={{ p: 1}}>{children}</Box>}
     </div>
   );
 }
 
 function LandingOrder() {
-  const [orderNum, setOrderNum] = useState(1);
   const [coffeeIceNum, setCoffeeIceNum] = useState(0);
   const [coffeeHotNum, setCoffeeHotNum] = useState(0);
-  const [mixCoffeeNum, setMixCoffeeNum] = useState(0);
+  const [mixCoffeeIceNum, setMixCoffeeIceNum] = useState(0);
+  const [mixCoffeeHotNum, setMixCoffeeHotNum] = useState(0);
   const [iceTeaNum, setIceTeaNum] = useState(0);
   const [iceChocoNum, setIceChocoNum] = useState(0);
   const [miSutGaruNum, setMiSutGaruNum] = useState(0);
-  const [peppermintNum, setPeppermintNum] = useState(0);
-  const [rooibosNum, setRooibosNum] = useState(0);
+  const [peppermintIceNum, setPeppermintIceNum] = useState(0);
+  const [peppermintHotNum, setPeppermintHotNum] = useState(0);
+  const [rooibosIceNum, setRooibosIceNum] = useState(0);
+  const [rooibosHotNum, setRooibosHotNum] = useState(0);
   const [etcNum, setEtcNum] = useState(0);
+  
+  const [orderNum, setOrderNum] = useState(1);
   const [totalPrice, setTotalPrice] = useState(0);
+  const [orderDetails, setOrderDetails] = useState<string>('');
 
-  const [value, setValue] = React.useState(0);
 
-  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-    setValue(newValue);
-  };
   const resetAllValue = () => {
     setCoffeeIceNum(0);
     setCoffeeHotNum(0);
-    setMixCoffeeNum(0);
+    setMixCoffeeIceNum(0);
+    setMixCoffeeHotNum(0);
     setIceTeaNum(0);
     setIceChocoNum(0);
     setMiSutGaruNum(0);
-    setPeppermintNum(0);
-    setRooibosNum(0);
+    setPeppermintIceNum(0);
+    setPeppermintHotNum(0);
+    setRooibosIceNum(0);
+    setRooibosHotNum(0);
     setEtcNum(0);
   };
 
   useEffect(() => {
     const coffeeIcePrice = coffeeIceNum * MENU[menuKey[0]];
     const coffeeHotPrice = coffeeHotNum * MENU[menuKey[1]];
-    const mixCoffeePrice = mixCoffeeNum * MENU[menuKey[2]];
-    const iceTeaPrice = iceTeaNum * MENU[menuKey[3]];
-    const iceChocoPrice = iceChocoNum * MENU[menuKey[4]];
-    const miSutGaruPrice = miSutGaruNum * MENU[menuKey[5]];
-    const peppermintPrice = peppermintNum * MENU[menuKey[6]];
-    const ruibosPrice = rooibosNum * MENU[menuKey[7]];
-    const etcPrice = etcNum * MENU[menuKey[8]];
+    const mixCoffeeIcePrice = mixCoffeeIceNum * MENU[menuKey[2]];
+    const mixCoffeeHotPrice = mixCoffeeHotNum * MENU[menuKey[3]];
+    const iceTeaPrice = iceTeaNum * MENU[menuKey[4]];
+    const iceChocoPrice = iceChocoNum * MENU[menuKey[5]];
+    const miSutGaruPrice = miSutGaruNum * MENU[menuKey[6]];
+    const peppermintIcePrice = peppermintIceNum * MENU[menuKey[7]];
+    const peppermintHotPrice = peppermintHotNum * MENU[menuKey[8]];
+    const ruibosIcePrice = rooibosIceNum * MENU[menuKey[9]];
+    const ruibosHotPrice = rooibosHotNum * MENU[menuKey[10]];
+    const etcPrice = etcNum * MENU[menuKey[11]];
 
     setTotalPrice(
       coffeeIcePrice +
         coffeeHotPrice +
-        mixCoffeePrice +
+        mixCoffeeIcePrice +
+        mixCoffeeHotPrice +
         iceTeaPrice +
         iceChocoPrice +
         miSutGaruPrice +
-        peppermintPrice +
-        ruibosPrice +
+        peppermintIcePrice +
+        peppermintHotPrice +
+        ruibosIcePrice +
+        ruibosHotPrice +
         etcPrice
     );
+
+    let newOrderDetails: string = '';
+    newOrderDetails += coffeeIceNum > 0 ? `${menuKey[0]}*${coffeeIceNum}, ` : '';
+    newOrderDetails += coffeeHotNum > 0 ? `${menuKey[1]}*${coffeeHotNum}, ` : '';
+    newOrderDetails += mixCoffeeIceNum > 0 ? `${menuKey[2]}*${mixCoffeeIceNum}, ` : '';
+    newOrderDetails += mixCoffeeHotNum > 0 ? `${menuKey[3]}*${mixCoffeeHotNum}, ` : '';
+    newOrderDetails += iceTeaNum > 0 ? `${menuKey[4]}*${iceTeaNum}, ` : '';
+    newOrderDetails += iceChocoNum > 0 ? `${menuKey[5]}*${iceChocoNum}, ` : '';
+    newOrderDetails += miSutGaruNum > 0 ? `${menuKey[6]}*${miSutGaruNum}, ` : '';
+    newOrderDetails += peppermintIceNum > 0 ? `${menuKey[7]}*${peppermintIceNum}, ` : '';
+    newOrderDetails += peppermintHotNum > 0 ? `${menuKey[8]}*${peppermintHotNum}, ` : '';
+    newOrderDetails += rooibosIceNum > 0 ? `${menuKey[9]}*${rooibosIceNum}, ` : '';
+    newOrderDetails += rooibosHotNum > 0 ? `${menuKey[10]}*${rooibosHotNum}, ` : '';
+    newOrderDetails += etcNum > 0 ? `${menuKey[11]}*${etcNum}` : '';
+    newOrderDetails = newOrderDetails.trim().replace(/,\s*$/, '');
+    // 상태 업데이트
+    setOrderDetails(newOrderDetails);
   }, [
     coffeeIceNum,
     coffeeHotNum,
-    mixCoffeeNum,
+    mixCoffeeIceNum,
+    mixCoffeeHotNum,
     iceTeaNum,
     iceChocoNum,
     miSutGaruNum,
-    peppermintNum,
-    rooibosNum,
+    peppermintIceNum,
+    peppermintHotNum,
+    rooibosIceNum,
+    rooibosHotNum,
     etcNum,
   ]);
 
+  const handleSubmit = () => {
+    const data = {
+      'orderNum' : orderNum,
+      'orderList' : orderDetails,
+      'totalPrice' : totalPrice,
+    }
+    console.log(data, "출력!")
+
+
+  }
+
   return (
     <React.Fragment>
-      <Container>
+      <Container sx={{height:"100%", }}>
         {/* Header 부분 */}
         <Grid
           container
@@ -141,7 +182,7 @@ function LandingOrder() {
           </Grid>
         </Grid>
         {/* 주문 탭 */}
-        <Tabs
+        {/* <Tabs
           value={value}
           onChange={handleChange}
           textColor="secondary"
@@ -149,17 +190,24 @@ function LandingOrder() {
         >
           <Tab label="탭 1" />
           <Tab label="탭 2" />
-        </Tabs>
+        </Tabs> */}
         <Box
           // sx={{ height: "580px" }}
         >
-          <TabPanel value={value} index={0}>
-            <Grid container spacing={1}>
+          {/* <TabPanel value={value} index={0}>
+            
+          </TabPanel>
+          <TabPanel value={value} index={1}>
+            2
+          </TabPanel> */}
+        </Box>
+        <Grid container spacing={1}>
               <Grid
                 item
                 xs={12}
                 sm={6}
-                md={4}
+                md={3}
+                lg={3}
                 sx={{ display: "flex", justifyContent: "center" }}
               >
                 <OrderMenu
@@ -172,7 +220,8 @@ function LandingOrder() {
                 item
                 xs={12}
                 sm={6}
-                md={4}
+                md={3}
+                lg={3}
                 sx={{ display: "flex", justifyContent: "center" }}
               >
                 <OrderMenu
@@ -181,30 +230,44 @@ function LandingOrder() {
                   setBeverageNum={setCoffeeHotNum}
                 />
               </Grid>
-              {/* mixCoffeeNum, iceTeaNum, iceChocoNum, miSutGaruNum, pepermintNum,
-            ruibosNum, etcNum, */}
               <Grid
                 item
                 xs={12}
                 sm={6}
-                md={4}
+                md={3}
+                lg={3}
                 sx={{ display: "flex", justifyContent: "center" }}
               >
                 <OrderMenu
                   menuName={menuKey[2]}
-                  beverageNum={mixCoffeeNum}
-                  setBeverageNum={setMixCoffeeNum}
+                  beverageNum={mixCoffeeIceNum}
+                  setBeverageNum={setMixCoffeeIceNum}
                 />
               </Grid>
               <Grid
                 item
                 xs={12}
                 sm={6}
-                md={4}
+                md={3}
+                lg={3}
                 sx={{ display: "flex", justifyContent: "center" }}
               >
                 <OrderMenu
                   menuName={menuKey[3]}
+                  beverageNum={mixCoffeeHotNum}
+                  setBeverageNum={setMixCoffeeHotNum}
+                />
+              </Grid>
+              <Grid
+                item
+                xs={12}
+                sm={6}
+                md={3}
+                lg={3}
+                sx={{ display: "flex", justifyContent: "center" }}
+              >
+                <OrderMenu
+                  menuName={menuKey[4]}
                   beverageNum={iceTeaNum}
                   setBeverageNum={setIceTeaNum}
                 />
@@ -213,11 +276,12 @@ function LandingOrder() {
                 item
                 xs={12}
                 sm={6}
-                md={4}
+                md={3}
+                lg={3}
                 sx={{ display: "flex", justifyContent: "center" }}
               >
                 <OrderMenu
-                  menuName={menuKey[4]}
+                  menuName={menuKey[5]}
                   beverageNum={iceChocoNum}
                   setBeverageNum={setIceChocoNum}
                 />
@@ -226,11 +290,12 @@ function LandingOrder() {
                 item
                 xs={12}
                 sm={6}
-                md={4}
+                md={3}
+                lg={3}
                 sx={{ display: "flex", justifyContent: "center" }}
               >
                 <OrderMenu
-                  menuName={menuKey[5]}
+                  menuName={menuKey[6]}
                   beverageNum={miSutGaruNum}
                   setBeverageNum={setMiSutGaruNum}
                 />
@@ -239,67 +304,88 @@ function LandingOrder() {
                 item
                 xs={12}
                 sm={6}
-                md={4}
-                sx={{ display: "flex", justifyContent: "center" }}
-              >
-                <OrderMenu
-                  menuName={menuKey[6]}
-                  beverageNum={peppermintNum}
-                  setBeverageNum={setPeppermintNum}
-                />
-              </Grid>
-              <Grid
-                item
-                xs={12}
-                sm={6}
-                md={4}
+                md={3}
+                lg={3}
                 sx={{ display: "flex", justifyContent: "center" }}
               >
                 <OrderMenu
                   menuName={menuKey[7]}
-                  beverageNum={rooibosNum}
-                  setBeverageNum={setRooibosNum}
+                  beverageNum={peppermintIceNum}
+                  setBeverageNum={setPeppermintIceNum}
                 />
               </Grid>
               <Grid
                 item
                 xs={12}
                 sm={6}
-                md={4}
+                md={3}
+                lg={3}
                 sx={{ display: "flex", justifyContent: "center" }}
               >
                 <OrderMenu
                   menuName={menuKey[8]}
+                  beverageNum={peppermintHotNum}
+                  setBeverageNum={setPeppermintHotNum}
+                />
+              </Grid>
+              <Grid
+                item
+                xs={12}
+                sm={6}
+                md={3}
+                lg={3}
+                sx={{ display: "flex", justifyContent: "center" }}
+              >
+                <OrderMenu
+                  menuName={menuKey[9]}
+                  beverageNum={rooibosIceNum}
+                  setBeverageNum={setRooibosIceNum}
+                />
+              </Grid>
+              <Grid
+                item
+                xs={12}
+                sm={6}
+                md={3}
+                lg={3}
+                sx={{ display: "flex", justifyContent: "center" }}
+              >
+                <OrderMenu
+                  menuName={menuKey[10]}
+                  beverageNum={rooibosHotNum}
+                  setBeverageNum={setRooibosHotNum}
+                />
+              </Grid>
+              <Grid
+                item
+                xs={12}
+                sm={6}
+                md={3}
+                lg={3}
+                sx={{ display: "flex", justifyContent: "center" }}
+              >
+                <OrderMenu
+                  menuName={menuKey[11]}
                   beverageNum={etcNum}
                   setBeverageNum={setEtcNum}
                 />
               </Grid>
             </Grid>
-          </TabPanel>
-          <TabPanel value={value} index={1}>
-            2
-          </TabPanel>
-        </Box>
 
-        <Box
-          sx={{
-            // minHeight: "150vh",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            flexDirection: "column",
-          }}
-        >
-          <Box
+        {/* 하단 바 */}
+          <Grid container
             sx={{
-              display: "flex",
-              justifyContent: "space-between",
-              width: "100%",
-              alignItems: "center",
-              flexDirection: "row",
+              // display: "flex",
+              // width: "100%",
+              // justifyContent: "space-between",
+              // alignItems: "center",
+              // flexDirection: "row",
               // margin: "0px 500px",
+              padding: '5px',
+              marginTop: "5px",
             }}
           >
+            <Grid item xs={12} sm={6} md={3} lg={3}>
             <Button
               variant="outlined"
               onClick={resetAllValue}
@@ -309,68 +395,75 @@ function LandingOrder() {
                 boxShadow: "0px 1px 1px 0px rgba(0, 0, 0, 0.10)",
                 // border: "1px solid rgba(201, 216, 255, 1)",
                 borderRadius: "10px",
-                width: "180px",
+                width: "25vh",
                 // padding: "0px 25px",
-                height: "90px",
+                height: "12vh",
                 textAlign: "center",
-                font: "25px Inter, sans-serif ",
+                font: "3.5vh Inter, sans-serif ",
                 fontWeight: "bold",
-                marginBottom: "10px",
+                
               }}
             >
               전체 삭제
             </Button>
-            <Box
-              sx={{
-                display: "flex",
-                // justifyContent: "space-between",
-                // width: "100%",
-                alignItems: "center",
-                flexDirection: "row",
-              }}
-            >
-              <Box sx={{ marginRight: "20px" }}>
+            </Grid>
+            {/* 주문 내역 */}
+            <Grid item xs={12} sm={6} md={3} lg={3}>
+            <Typography sx={{
+              fontSize: '1', 
+              marginLeft:'10px'}}>
+              {orderDetails}
+            </Typography>
+            </Grid>
+            {/* 총 결제 금액, 주문 접수 버튼 묶음 */}
+              {/* 총 결제 금액 */}
+              <Grid item xs={12} sm={6} md={3}>
+              <Box sx={{ marginRight: "20px"}}>
                 <Typography
                   sx={{
                     fontWeight: "bold",
-                    fontSize: "25px",
+                    fontSize: "3.5vh",
                     textAlign: "end",
                   }}
                 >
                   총 결제금액
-                </Typography>
+                </Typography> 
                 <Typography
                   sx={{
                     fontWeight: "bold",
-                    fontSize: "45px",
+                    fontSize: {sm: "4vh", md:"5vh", lg:"5.5vh"},
                     textAlign: "end",
                   }}
                 >
                   {totalPrice.toLocaleString()}원
                 </Typography>
               </Box>
+              </Grid>
+              {/* 주문 접수 버튼 */}
+              <Grid item xs={12} sm={6} md={3}>
               <Button
+              // onSubmit={}
                 variant="contained"
-                // onClick={resetAllValue}
+                onClick={handleSubmit}
                 color="success"
                 sx={{
                   // background: "linear-gradient(180deg, #FFF 0%, #FBFCFF 100%)",
                   boxShadow: "0px 1px 1px 0px rgba(0, 0, 0, 0.10)",
                   border: "1px solid rgba(201, 216, 255, 1)",
                   borderRadius: "10px",
-                  width: "340px",
-                  height: "90px",
+                  width: "100%",
+                  height: "12vh",
                   textAlign: "center",
-                  font: "25px Inter, sans-serif ",
+                  font: "3.5vh Inter, sans-serif ",
                   fontWeight: "bold",
                   marginBottom: "10px",
                 }}
               >
                 주문 접수
               </Button>
-            </Box>
-          </Box>
-        </Box>
+              </Grid>
+          </Grid>
+        {/* </Box> */}
       </Container>
     </React.Fragment>
   );
