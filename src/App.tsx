@@ -5,22 +5,16 @@ import {
   ThemeProvider,
 } from "@mui/material/styles";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import AppBar from "./components/header/AppBar";
 // import Detail from "./routes/Detail";
-import Home from "./routes/Home";
-import SignIn from "./routes/SignIn";
-import Write from "./routes/Write";
-import LandingPage from "routes/LandingPage";
-import Apollo from "routes/Apollo";
-import QuillWritePage from "routes/QuillWritePage";
 import LandingOrder from "routes/baja_LandingOrder";
+import OrderList from "routes/baja_OrderList";
 
 const theme = createTheme({
   palette: {
     // mode: "dark",
-    primary: {
-      main: "#1f1f1f",
-    },
+    // primary: {
+    //   main: "#1f1f1f",
+    // },
     secondary: { main: "#2f00ff" },
     background: {
       default: "#ffffff",
@@ -45,6 +39,7 @@ const App = () => {
             {/* <Route path="signin" element={<SignIn />} /> */}
             {/* <Route path="landing" element={<LandingPage />} /> */}
             <Route path="/" element={<LandingOrder />} />
+            <Route path="/order" element={<OrderList />} />
             {/* <Route path="apollo" element={<Apollo />} /> */}
             {/* <Route path="write" element={<Write />} /> */}
             {/* <Route path="question/:id" element={<Detail />} /> */}

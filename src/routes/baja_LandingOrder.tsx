@@ -11,6 +11,7 @@ import OrderMenu from "./../components/baja/OrderMenu";
 import { db } from "./../firebase";
 import { addDoc, collection, getDocs, limit, orderBy, query, serverTimestamp } from "firebase/firestore/lite";
 
+
 function LandingOrder() {
   const [coffeeIceNum, setCoffeeIceNum] = useState(0);
   const [coffeeHotNum, setCoffeeHotNum] = useState(0);
@@ -110,12 +111,14 @@ function LandingOrder() {
     // 총 가격 0원 이상일 경우에만 전송
     if (totalPrice > 0) {
       const currentTime = serverTimestamp(); // 현재 시간 가져오기
+      console.log(currentTime,' 시간')
 
       const newOrderData = {
         'orderNum' : orderNum,
         'orderDetails' : orderDetails,
         'totalPrice' : totalPrice,
-        'created_at' : currentTime
+        'created_at' : currentTime,
+        'note' : ''
       }
       const orderCollectionRef = collection(db, 'orders'); // 'orders' 컬렉션에 대한 참조 생성
       console.log(newOrderData, "새로운 데이터 출력!") 
@@ -170,7 +173,7 @@ function LandingOrder() {
                 textAlign: "center",
               }}
             >
-              주문 번호 :
+              주문 번호 - {" "}
               <Typography
                 sx={{
                   display: "inline",
@@ -187,7 +190,8 @@ function LandingOrder() {
             <Typography
               sx={{
                 fontSize: "40px",
-                fontFamily: "cursive",
+                // fontFamily: "cursive",
+                fontFamily: "Holtwood One SC",
                 fontWeight: "bold",
                 textAlign: "center",
               }}
@@ -195,30 +199,15 @@ function LandingOrder() {
               NH Cafe
             </Typography>
           </Grid>
-          <Grid item xs={4} md={4}>
+          <Grid item xs={4} md={4} sx={{ display: 'flex', justifyContent: 'end', height: {xs: '50px', sm: '70px', lg:'90px'} }}>
+          <img src="/assets/jang.png" alt="jang" style={{ width: 'auto', height: 'auto' }} />
+          <img src="/assets/bae.png" alt="bae" style={{ width: 'auto', height: 'auto' }} />
             {/* 오른쪽에는 빈 공간 */}
           </Grid>
         </Grid>
         {/* 주문 탭 */}
-        {/* <Tabs
-          value={value}
-          onChange={handleChange}
-          textColor="secondary"
-          indicatorColor="secondary"
-        >
-          <Tab label="탭 1" />
-          <Tab label="탭 2" />
-        </Tabs> */}
-        <Box
-          // sx={{ height: "580px" }}
-        >
-          {/* <TabPanel value={value} index={0}>
-            
-          </TabPanel>
-          <TabPanel value={value} index={1}>
-            2
-          </TabPanel> */}
-        </Box>
+        <Box>
+        </Box>  
         <Grid container spacing={1}>
               <Grid
                 item
@@ -426,10 +415,16 @@ function LandingOrder() {
             </Button>
             </Grid>
             {/* 주문 내역 */}
-            <Grid item xs={12} sm={6} md={3} lg={3}>
+            <Grid item xs={12} sm={6} md={3} lg={3} 
+            // sx={{alignContent:'start', 
+            // border: '1px solid black', borderRadius: '20px'
+          // }}
+            >
             <Typography sx={{
-              fontSize: '1', 
+              fontSize: '2vh', 
               marginLeft:'10px'}}>
+              {/* <text style={{fontSize:'2.4vh', fontWeight:'bold'}}>주문 내역</text><br/> */}
+
               {orderDetails}
             </Typography>
             </Grid>
@@ -461,23 +456,29 @@ function LandingOrder() {
               <Grid item xs={12} sm={6} md={3}>
               <Button
               // onSubmit={}
-                variant="contained"
+                // variant="contained"
                 onClick={handleSubmit}
-                color="success"
+                // color="success"
                 sx={{
                   // background: "linear-gradient(180deg, #FFF 0%, #FBFCFF 100%)",
-                  boxShadow: "0px 1px 1px 0px rgba(0, 0, 0, 0.10)",
-                  border: "1px solid rgba(201, 216, 255, 1)",
+                  backgroundColor: "#0085FF",
+                  // backgroundColor: "blue",
+                  boxShadow: "0px 1px 1px 0px #6F98FF",
+                  border: "1px solid #6F98FF",
                   borderRadius: "10px",
                   width: "100%",
-                  height: "12vh",
+                  height: "15vh",
                   textAlign: "center",
                   font: "3.5vh Inter, sans-serif ",
+                  color:'white',
                   fontWeight: "bold",
                   marginBottom: "10px",
+                  "&:hover": {
+                    color: "black",
+                  },
                 }}
               >
-                주문 접수
+                주문하기
               </Button>
               </Grid>
           </Grid>

@@ -34,6 +34,7 @@ const OrderMenu = ({
           // height: "110px",
           textAlign: "center",
           font: "3vh Inter, sans-serif ",
+          color:'black',
           fontWeight: "bold",
           marginBottom: "5px",
         }}
