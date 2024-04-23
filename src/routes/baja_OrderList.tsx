@@ -45,7 +45,7 @@ function OrderList() {
       created_at: doc.data().created_at,
       ...doc.data(), // Firebase 문서의 데이터를 그대로 사용
     }));
-    console.log(data,'모든 주문 정보 출력')
+    console.log(data,'가져온 주문 정보 출력')
     setFetchedRows(data)
     const totalPriceSum = data.reduce((accumulator, currentValue) => {
       return accumulator + currentValue.totalPrice;
