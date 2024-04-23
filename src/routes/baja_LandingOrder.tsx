@@ -105,7 +105,6 @@ function LandingOrder() {
         'orderDetails' : orderDetails,
         'totalPrice' : totalPrice,
         'created_at' : currentTime,
-        'note' : ''
       }
       const orderCollectionRef = collection(db, 'orders'); // 'orders' 컬렉션에 대한 참조 생성
       // console.log(newOrderData, "새로운 데이터 출력!") 
