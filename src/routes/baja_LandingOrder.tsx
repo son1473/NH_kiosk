@@ -142,7 +142,7 @@ function LandingOrder() {
   
   return (
     <React.Fragment>
-      <Container sx={{height:"100%", }}>
+      <Container sx={{height:"100%",  }}>
         {/* Header 부분 */}
         <Grid
           container
@@ -156,6 +156,7 @@ function LandingOrder() {
                 display: "inline",
                 font: "25px solid sans-serif ",
                 fontWeight: "bold",
+                fontFamily: "Gowum",
                 textAlign: "center",
               }}
             >
@@ -163,7 +164,8 @@ function LandingOrder() {
               <Typography
                 sx={{
                   display: "inline",
-                  font: "40px solid sans-serif ",
+                  font: "40px solid sans-serif",
+                  fontFamily: "Gowum",
                   fontWeight: "bold",
                   // textAlign: "center",
                 }}
@@ -366,7 +368,7 @@ function LandingOrder() {
                 textAlign: "center",
                 font: "3.5vh Inter, sans-serif ",
                 fontWeight: "bold",
-                
+                fontFamily: "Gowum",
               }}
             >
               전체 삭제
@@ -379,7 +381,8 @@ function LandingOrder() {
           // }}
             >
             <Typography sx={{
-              fontSize: '2vh', 
+              fontSize: '2.4vh', 
+              fontFamily: "Gowum",
               marginLeft:'10px'}}>
               {/* <text style={{fontSize:'2.4vh', fontWeight:'bold'}}>주문 내역</text><br/> */}
 
@@ -395,6 +398,7 @@ function LandingOrder() {
                     fontWeight: "bold",
                     fontSize: "3.5vh",
                     textAlign: "end",
+                    fontFamily: "Gowum",
                   }}
                 >
                   총 결제금액
@@ -404,6 +408,7 @@ function LandingOrder() {
                     fontWeight: "bold",
                     fontSize: {sm: "4vh", md:"5vh", lg:"5.5vh"},
                     textAlign: "end",
+                    fontFamily: "Gowum",
                   }}
                 >
                   {totalPrice.toLocaleString()}원
@@ -430,6 +435,7 @@ function LandingOrder() {
                   font: "3.5vh Inter, sans-serif ",
                   color:'white',
                   fontWeight: "bold",
+                  fontFamily: "Gowum",
                   "&:hover": {
                     color: "black",
                   },

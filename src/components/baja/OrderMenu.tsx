@@ -17,7 +17,7 @@ const OrderMenu = ({
   const borderColor = beverageNum > 0 ? "blue" : "rgba(201, 216, 255, 1)";
 
   return (
-    <Box sx={{ width: "100%" }}>
+    <Box sx={{ width: "100%",  }}>
       <Button
         onClick={() => {
           setBeverageNum(beverageNum + 1);
@@ -37,6 +37,7 @@ const OrderMenu = ({
           color:'black',
           fontWeight: "bold",
           marginBottom: "5px",
+          fontFamily: "Gowum",
         }}
       >
         {menuName} <br />
@@ -104,6 +105,7 @@ const OrderMenu = ({
             InputProps={{
               inputProps: {
                 style: {
+                  // fontFamily: "Gowum",
                   textAlign: "center",
                   // verticalAlign: "middle",
                   padding: "0",
@@ -126,6 +128,7 @@ const OrderMenu = ({
                 
                 // padding: "6px",
                 color: buttonColor,
+                fontFamily: "Gowum",
                 fontWeight: "bold",
                 textAlign: "center",
               },
@@ -192,7 +195,8 @@ const OrderMenu = ({
             }
           ></Button>
         </Box>
-        <Typography sx={{ fontWeight: "bold", fontSize: {xs: "4.5vw", sm: "3.5vw", md:"2vw", lg:"2vw"}, textAlign:'start' }}>
+        <Typography sx={{ fontWeight: "bold", fontFamily: "Gowum",
+        fontSize: {xs: "4.5vw", sm: "3.5vw", md:"2vw", lg:"2vw"}, textAlign:'start' }}>
           {(beverageNum * MENU[menuName]).toLocaleString()}
         </Typography>
       </Box>

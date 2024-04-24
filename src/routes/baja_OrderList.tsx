@@ -6,8 +6,8 @@ import {
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { db } from "../firebase";
-import { collection, getDocs } from "firebase/firestore/lite";
-import { DataGrid, GridColDef } from '@mui/x-data-grid';
+import { collection, getDocs, doc, deleteDoc } from "firebase/firestore/lite";
+import { DataGrid, GridColDef, } from '@mui/x-data-grid';
 
 
 // 행 종류
@@ -26,16 +26,40 @@ const columns: GridColDef<[number]>[] = [
     });
     ;
   },
+  
 },
 ];
 function OrderList() {
   const [fetchedRows, setFetchedRows] = useState<any[]>([])
   const [totalPriceSum, setTotalPriceSum] = useState(0)
   const [sortModel, setSortModel] = useState<any[]>([{ field: 'orderNum', sort: 'desc' }]);
+  const [selectionModel, setSelectionModel] = React.useState<any[]>([]);
 
   const handleSortChange = (newSortModel:any) => {
     setSortModel(newSortModel);
   };
+
+  const handleSelectionChange = (params: any) => {
+    setSelectionModel(params);
+  };
+
+  const handleDeleteSelectedRows = async () => {
+    if (window.confirm("삭제하면 복구할 수 없습니다.\n정말 삭제하시겠습니까?")) {
+      // 선택된 행 삭제 로직
+      const updatedRows = fetchedRows.filter(row => !selectionModel.includes(row.id));
+      // Firebase에서 선택된 문서 삭제
+      try {
+        selectionModel.forEach(async selectedId => {
+        await deleteDoc(doc(db, 'orders', selectedId));
+      });
+      console.log('선택된 행을 Firebase에서 삭제했습니다.', updatedRows);
+      } catch (error) {
+      console.error('삭제 중 오류가 발생했습니다:', error)
+      }
+      setFetchedRows(updatedRows);
+    }
+  };
+
 
   
 
@@ -91,7 +115,7 @@ function OrderList() {
     const url = window.URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
-    link.setAttribute('download', 'data.csv');
+    link.setAttribute('download', '이웃사랑 바자회 청년부 카페 회계내역.csv');
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -99,7 +123,14 @@ function OrderList() {
 
   // CSV 파일로 저장 버튼 클릭 시 처리
   function handleDownloadClick() {
-    const csvData = convertToCSV(fetchedRows);
+    const saveData = fetchedRows.map(item => ({
+      주문번호: item.orderNum,
+      주문내역: item.orderDetails,
+      결제금액: item.totalPrice,
+      주문시간: item.created_at,
+    }));
+    
+    const csvData = convertToCSV(saveData);
     saveCSVToFile(csvData);
   }
   
@@ -107,26 +138,39 @@ function OrderList() {
     <React.Fragment>
       <Container>
         <Box sx={{display:'flex', flexDirection:'row', justifyContent:'space-between', alignItems:'center', minHeight:"60px"}}>
-        <Typography sx={{fontSize:'2rem'}}> ✨남현 카페 주문목록☕</Typography>
+        <Typography sx={{fontSize:'2rem', fontFamily: "Gowum"}}> ✨남현 카페 주문목록☕</Typography>
         <Box sx={{display:'flex', flexDirection:'row', justifyContent:'space-between', alignItems:'baseline'}}>
-          <Typography sx={{fontSize:'1.4rem'}}> 총 판매액:</Typography>
-          <Typography sx={{fontSize:'1.8rem', fontWeight:'bold'}}> {totalPriceSum.toLocaleString()}원</Typography>
-          <Button onClick={handleDownloadClick}>CSV 파일로 저장</Button>
+          <Typography sx={{fontSize:'1.4rem', fontFamily: "Gowum"}}> 총 판매액:</Typography>
+          <Typography sx={{fontSize:'1.8rem', fontWeight:'bold', fontFamily: "Gowum"}}> {totalPriceSum.toLocaleString()}원</Typography>
+          <Button sx={{fontSize:'0.8rem'}} onClick={handleDownloadClick}>회계 내역 다운로드</Button>
         </Box>
             </Box>
-        <Box sx={{ height: '500px', width: '100%' }}>
+        <Box 
+        // sx={{ height: '500px', width: '100%' }}
+        >
       <DataGrid
         rows={fetchedRows}
         columns={columns}
         sx={{fontWeight:'bold'}}
-        
         sortModel={sortModel}
         onSortModelChange={handleSortChange}
+        rowSelectionModel={selectionModel}
+        onRowSelectionModelChange={handleSelectionChange}
         autoHeight
         checkboxSelection
         disableRowSelectionOnClick
       />
     </Box>
+    {selectionModel.length > 0 && ( // 선택된 행이 있을 때만 버튼이 나타남
+        <Button onClick={handleDeleteSelectedRows}>
+          주문 삭제
+        </Button>
+      )}
+    {/* <Button 
+    onClick={handleDeleteSelectedRows}
+    
+    disabled={selectionModel.length === 0} // 선택된 행이 없을 때 비활성화
+    >주문 삭제</Button> */}
       </Container>
     </React.Fragment>
   );
