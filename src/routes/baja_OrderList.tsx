@@ -140,9 +140,15 @@ function OrderList() {
         <Box sx={{display:'flex', flexDirection:'row', justifyContent:'space-between', alignItems:'center', minHeight:"60px"}}>
         <Typography sx={{fontSize:'2rem', fontFamily: "Gowum"}}> ✨남현 카페 주문목록☕</Typography>
         <Box sx={{display:'flex', flexDirection:'row', justifyContent:'space-between', alignItems:'baseline'}}>
+        {selectionModel.length > 0 && ( // 선택된 행이 있을 때만 버튼이 나타남
+        <Button sx={{fontSize:'0.8rem'}} onClick={handleDeleteSelectedRows}>
+          주문 삭제
+        </Button>
+      )}
           <Typography sx={{fontSize:'1.4rem', fontFamily: "Gowum"}}> 총 판매액:</Typography>
           <Typography sx={{fontSize:'1.8rem', fontWeight:'bold', fontFamily: "Gowum"}}> {totalPriceSum.toLocaleString()}원</Typography>
           <Button sx={{fontSize:'0.8rem'}} onClick={handleDownloadClick}>회계 내역 다운로드</Button>
+          
         </Box>
             </Box>
         <Box 
@@ -161,16 +167,7 @@ function OrderList() {
         disableRowSelectionOnClick
       />
     </Box>
-    {selectionModel.length > 0 && ( // 선택된 행이 있을 때만 버튼이 나타남
-        <Button onClick={handleDeleteSelectedRows}>
-          주문 삭제
-        </Button>
-      )}
-    {/* <Button 
-    onClick={handleDeleteSelectedRows}
     
-    disabled={selectionModel.length === 0} // 선택된 행이 없을 때 비활성화
-    >주문 삭제</Button> */}
       </Container>
     </React.Fragment>
   );
