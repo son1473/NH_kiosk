@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+# 남현 바자회 카페 키오스크, 주문 관리 시스템
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
