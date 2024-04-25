@@ -100,33 +100,23 @@ const OrderMenu = ({
           {/* 개수 입력 창 */}
           <TextField
             variant="outlined"
-            // defaultValue={beverageNum}
             value={beverageNum}
             InputProps={{
               inputProps: {
                 style: {
-                  // fontFamily: "Gowum",
                   textAlign: "center",
-                  // verticalAlign: "middle",
                   padding: "0",
-                  // fontSize: "1.2rem",
                   fontSize: "2.8vh",
-                  // fontSize: "2.3vw",
-                  // color: "secondary",
                 },
               },
               style: {
                 borderRadius: "50px",
-                // minWidth: "38px",
                 width: "7vh",
                 height: "7vh",
                 maxWidth: '45px',
                 maxHeight: '45px',
               // width: '6vh',
               // height: '6vh',
-            
-                
-                // padding: "6px",
                 color: buttonColor,
                 fontFamily: "Gowum",
                 fontWeight: "bold",
@@ -166,11 +156,6 @@ const OrderMenu = ({
               width: '6vh',
               height: '6vh',
             }}
-
-              // max-width="30px"
-              // max-height="30px"
-              // width="6vh"
-              // height="6vh"
                 viewBox="0 0 46 46"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"

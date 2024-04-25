@@ -6,8 +6,9 @@ import {
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { db } from "../firebase";
-import { collection, getDocs, doc, deleteDoc } from "firebase/firestore/lite";
 import { DataGrid, GridColDef, } from '@mui/x-data-grid';
+import { collection, getDocs, doc, writeBatch } from "firebase/firestore/lite";
+
 
 
 // 행 종류
@@ -29,6 +30,7 @@ const columns: GridColDef<[number]>[] = [
   
 },
 ];
+
 function OrderList() {
   const [fetchedRows, setFetchedRows] = useState<any[]>([])
   const [totalPriceSum, setTotalPriceSum] = useState(0)
@@ -49,18 +51,22 @@ function OrderList() {
       const updatedRows = fetchedRows.filter(row => !selectionModel.includes(row.id));
       // Firebase에서 선택된 문서 삭제
       try {
+        const batch = writeBatch(db);
+
         selectionModel.forEach(async selectedId => {
-        await deleteDoc(doc(db, 'orders', selectedId));
-      });
-      console.log('선택된 행을 Firebase에서 삭제했습니다.', updatedRows);
+        // await deleteDoc(doc(db, 'orders', selectedId));
+        const docRef = doc(db, 'orders', selectedId);
+        // batch를 사용해 여러 개 삭제를 1번의 쓰기로 적용
+        batch.delete(docRef);
+        });
+        await batch.commit();
+        console.log('선택된 행을 Firebase에서 삭제했습니다.', updatedRows);
       } catch (error) {
       console.error('삭제 중 오류가 발생했습니다:', error)
       }
       setFetchedRows(updatedRows);
     }
   };
-
-
   
 
   async function getOrders() {
@@ -72,13 +78,11 @@ function OrderList() {
       ...doc.data(), // Firebase 문서의 데이터를 그대로 사용
     }));
     console.log(data,'가져온 주문 정보 출력')
-    // console.log(doc.data().created_at,'ddd')
     setFetchedRows(data)
     const totalPriceSum = data.reduce((accumulator, currentValue) => {
       return accumulator + currentValue.totalPrice;
     }, 0);
     setTotalPriceSum(totalPriceSum)
-
   }
 
   // 랜더링 시에만, 주문 내역 가져오기.
@@ -93,7 +97,6 @@ function OrderList() {
     const rows = data.map(obj =>
       Object.values(obj).map((value:any) =>
         typeof value === 'string' && value.includes(',') ? `"${value}"` :
-        // typeof value === 'number' && !isNaN(value) ? new Date(value).toISOString() :
         typeof value === 'object' ? 
         new Date(value.seconds*1000).toLocaleString('ko-KR', {
           hour: 'numeric',
@@ -110,7 +113,6 @@ function OrderList() {
 
   // CSV 파일로 저장 및 다운로드
   function saveCSVToFile(csvData: string) {
-    // const blob = new Blob([csvData], { type: 'text/csv' });
     const blob = new Blob(["\ufeff"+csvData], { type: 'text/csv;charset=utf-8' }); // MIME 타입 변경
     const url = window.URL.createObjectURL(blob);
     const link = document.createElement('a');

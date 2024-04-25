@@ -167,7 +167,6 @@ function LandingOrder() {
                   font: "40px solid sans-serif",
                   fontFamily: "Gowum",
                   fontWeight: "bold",
-                  // textAlign: "center",
                 }}
               >
                 {orderNum}
@@ -190,7 +189,6 @@ function LandingOrder() {
           <Grid item xs={4} md={4} sx={{ display: 'flex', justifyContent: 'end', height: {xs: '50px', sm: '70px', lg:'90px'} }}>
           <img src="/assets/jang.png" alt="jang" style={{ width: 'auto', height: 'auto' }} />
           <img src="/assets/bae.png" alt="bae" style={{ width: 'auto', height: 'auto' }} />
-            {/* 오른쪽에는 빈 공간 */}
           </Grid>
         </Grid>
         {/* 주문 탭 */}
@@ -342,12 +340,6 @@ function LandingOrder() {
         {/* 하단 바 */}
           <Grid container
             sx={{
-              // display: "flex",
-              // width: "100%",
-              // justifyContent: "space-between",
-              // alignItems: "center",
-              // flexDirection: "row",
-              // margin: "0px 500px",
               padding: '5px',
               marginTop: "5px",
             }}
@@ -358,12 +350,9 @@ function LandingOrder() {
               onClick={resetAllValue}
               color="error"
               sx={{
-                // background: "linear-gradient(180deg, #FFF 0%, #FBFCFF 100%)",
                 boxShadow: "0px 1px 1px 0px rgba(0, 0, 0, 0.10)",
-                // border: "1px solid rgba(201, 216, 255, 1)",
                 borderRadius: "10px",
                 width: "25vh",
-                // padding: "0px 25px",
                 height: "12vh",
                 textAlign: "center",
                 font: "3.5vh Inter, sans-serif ",
@@ -375,21 +364,14 @@ function LandingOrder() {
             </Button>
             </Grid>
             {/* 주문 내역 */}
-            <Grid item xs={12} sm={6} md={3} lg={3} 
-            // sx={{alignContent:'start', 
-            // border: '1px solid black', borderRadius: '20px'
-          // }}
-            >
+            <Grid item xs={12} sm={6} md={3} lg={3}>
             <Typography sx={{
               fontSize: '2.4vh', 
               fontFamily: "Gowum",
               marginLeft:'10px'}}>
-              {/* <text style={{fontSize:'2.4vh', fontWeight:'bold'}}>주문 내역</text><br/> */}
-
               {orderDetails}
             </Typography>
             </Grid>
-            {/* 총 결제 금액, 주문 접수 버튼 묶음 */}
               {/* 총 결제 금액 */}
               <Grid item xs={12} sm={6} md={3}>
               <Box sx={{ marginRight: "20px"}}>
@@ -418,14 +400,11 @@ function LandingOrder() {
               {/* 주문 접수 버튼 */}
               <Grid item xs={12} sm={6} md={3}>
               <Button
-              // onSubmit={}
-                // variant="contained"
                 onClick={handleSubmit}
                 // color="success"
                 sx={{
                   // background: "linear-gradient(180deg, #FFF 0%, #FBFCFF 100%)",
                   backgroundColor: "#0085FF",
-                  // backgroundColor: "blue",
                   boxShadow: "0px 1px 1px 0px #6F98FF",
                   border: "1px solid #6F98FF",
                   borderRadius: "10px",
